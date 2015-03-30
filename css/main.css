@@ -30,7 +30,7 @@ body {
 .version {
   position: absolute;
   top: auto;
-  right: 10;
+  right: 10px;
   bottom: auto;
   left: auto;
 }
