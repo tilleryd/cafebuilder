@@ -1,4 +1,4 @@
-.grabbable {
+.draggable {
   cursor: move;
   /* fallback if grab cursor is unsupported */
   cursor: grab;
@@ -6,7 +6,7 @@
   cursor: -webkit-grab;
 }
 /* (Optional) Apply a "closed-hand" cursor during drag operation. */
-.grabbable:active {
+.draggable:active {
   cursor: grabbing;
   cursor: -moz-grabbing;
   cursor: -webkit-grabbing;
@@ -34,20 +34,27 @@ body {
   bottom: auto;
   left: auto;
 }
-.selects {
+.tools {
   margin: 10px;
 }
-.selects .label {
+.tools .selects {
+  float: left;
+  margin-right: 10px;
+}
+.tools .selects .label {
   min-width: 120px;
   float: left;
   text-align: right;
   margin-right: 10px;
 }
-.selects select {
+.tools .selects select {
   min-width: 100px;
   border: 1px solid #333;
 }
-.selects ul li {
+.tools .selects ul {
+  margin: 0;
+}
+.tools .selects ul li {
   list-style: none;
 }
 .bike {
@@ -56,123 +63,124 @@ body {
   position: relative;
   margin: 100px auto;
 }
-.bike div:not(.core) {
+canvas:not(#core) {
+  position: absolute !important;
   z-index: 1;
 }
-.original {
-  background: url('../images/cb750-original-sprite.png') no-repeat;
-}
-.supersport {
-  background: url('../images/cb750-custom-sprite.png') no-repeat;
-}
-.core {
-  height: 450px;
-  width: inherit;
-  z-index: 0;
-  background: url('../images/cb750-original-sprite.png') no-repeat;
-  position: absolute;
-  top: 5px;
-  right: auto;
-  bottom: auto;
-  left: 8px;
-}
-.none {
-  background: none;
-}
-.draggable div {
-  cursor: move;
-  /* fallback if grab cursor is unsupported */
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-}
-.seat .original {
-  background-position: 0 -450px;
-  height: 93px;
-  width: 310px;
-  position: absolute;
-  top: 51px;
-  right: auto;
-  bottom: auto;
-  left: 115px;
-}
-.seat .supersport {
-  background-position: 0 -95px;
-  height: 49px;
-  width: 242px;
-  position: absolute;
-  top: 88px;
-  right: auto;
-  bottom: auto;
-  left: 148px;
-}
-.tank .original {
-  background-position: 0 -543px;
-  height: 110px;
-  width: 246px;
-  position: absolute;
-  top: 30px;
-  right: auto;
-  bottom: auto;
-  left: 404px;
-}
-.tank .supersport {
-  background-position: 0 0;
-  height: 95px;
-  width: 278px;
-  position: absolute;
+canvas#seat.original {
   top: 46px;
-  right: auto;
-  bottom: auto;
+  left: 110px;
+}
+canvas#tank.original {
+  top: 25px;
+  left: 396px;
+}
+canvas#tank.supersport {
+  top: 36px;
   left: 376px;
 }
-.tank-badge .original {
-  background-position: 0 -660px;
-  height: 10px;
-  width: 88px;
-  position: absolute;
-  top: 72px;
-  right: auto;
-  bottom: auto;
-  left: 527px;
+/*
+.seat {
+  .original {
+    background-position: 0 -450px;  
+    height: 93px;
+    width: 310px;
+    .overlay(51px, auto, auto, 115px);
+  }
+
+  .supersport {
+    background-position: 0 -95px;
+    height: 49px;
+    width: 242px;
+    .overlay(88px, auto, auto, 148px);
+  }
+
+  .racey {
+    background-position: -241px -95px;
+    height: 48px;
+    width: 231px;
+    .overlay(88px, auto, auto, 178px); 
+  }
 }
-.oil-tank .original {
-  background-position: -3px -708px;
-  height: 189px;
-  width: 207px;
-  position: absolute;
-  top: 140px;
-  right: auto;
-  bottom: auto;
-  left: 239px;
+
+.tank {
+  .original {
+    background-position: 0 -543px;
+    height: 110px;
+    width: 246px;
+    .overlay(30px, auto, auto, 404px);
+  }
+
+  .supersport {
+    background-position: 0 0;
+    height: 95px;
+    width: 278px;
+    .overlay(46px, auto, auto, 376px);
+  }
 }
-.oil-tank-badge .original {
-  background-position: 0 -674px;
-  height: 33px;
-  width: 43px;
-  position: absolute;
-  top: 178px;
-  right: auto;
-  bottom: auto;
-  left: 327px;
+
+.tank-badge {
+  .original {
+    background-position: 0 -660px;
+    height: 10px;
+    width: 88px;
+    .overlay(72px, auto, auto, 527px);
+  }
 }
-.exhaust .original {
-  background-position: 0 -903px;
-  height: 179px;
-  width: 557px;
-  position: absolute;
-  top: 202px;
-  right: auto;
-  bottom: auto;
-  left: 69px;
+
+.headlight {
+  .original {
+    background-position: 0 -1075px;
+    height: 97px;
+    width: 70px;
+    .overlay(0, auto, auto, 684px);
+  }
+
+  .supersport {
+    background-position: 0 0;
+    height: 95px;
+    width: 278px;
+    .overlay(46px, auto, auto, 376px);
+  }
 }
-.exhaust .supersport {
-  background-position: 0 -143px;
-  height: 186px;
-  width: 414px;
-  position: absolute;
-  top: 205px;
-  right: auto;
-  bottom: auto;
-  left: 215px;
+
+.oil-tank {
+  .original {
+    background-position: -3px -708px;
+    height: 189px;
+    width: 207px;
+    .overlay(140px, auto, auto, 239px);
+  }
+}
+
+.oil-tank-badge {
+  .original {
+    background-position: 0 -674px;
+    height: 33px;
+    width: 43px;
+    .overlay(178px, auto, auto, 327px);
+  }
+}
+
+.exhaust {
+  .original {
+    background-position: 0 -903px;
+    height: 179px;
+    width: 557px;
+    .overlay(202px, auto, auto, 69px);
+  }
+
+  .supersport {
+    background-position: 0 -143px;
+    height: 186px;
+    width: 414px;
+    .overlay(205px, auto, auto, 215px);
+  }
+}
+*/
+div.rui-colorpicker div.field,
+div.rui-colorpicker div.field div.pointer,
+div.rui-colorpicker div.colors,
+div.rui-colorpicker div.colors div.pointer {
+  background-image: url(../images/colorpicker.png);
 }

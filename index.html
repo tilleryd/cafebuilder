@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" ng-app>
   <head>
     <meta charset="UTF-8">
     <meta name="description" content="Build a custom cafe racer online, print it, and build it.">
-    <meta name="keywords" content="cafe racer, custom motorcycle, cafe motorcycle">
+    <meta name="keywords" content="cafe racer,custom motorcycle,cafe motorcycle,build custom mototrcycle">
     <meta name="robots" content="index,follow">
     
     <title>CafeBuilder</title>
 
-    <script src="scripts/jquery-2.1.3.js"></script>
-    <script src="scripts/jquery-ui-1.11.4.js"></script>
-    <script src="scripts/angular.js"></script>
-    <script src="scripts/builder.js"></script>
-
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="vendor/css/jquery-ui.min.css">
+    <link rel='stylesheet' href='vendor/css/spectrum.css' />
+    <link rel="stylesheet" href="css/main.css">
   </head>
 
   <body>
@@ -27,74 +23,97 @@
       </header>
       <div class="builder">
         <form>
-          <div class="selects">
-            <ul>
-              <li>
-                <div class="label">
-                  <label for="seat-select">Seat</label>
-                </div>
-                <select id="seat-select" name="seat">
-                  <option>Original</option>
-                  <option>Supersport</option>
-                  <option>None</option>
-                </select>
-              </li>
+          <div class="tools">
+            <div class="selects">
+              <ul>
+                <li>
+                  <div class="label">
+                    <label for="seat-select">Seat</label>
+                  </div>
+                  <select id="seat-select" name="seat">
+                    <option>Original</option>
+                    <option>Supersport</option>
+                    <option>Racey</option>
+                    <option>None</option>
+                  </select>
+                </li>
 
-              <li>
-                <div class="label">
-                  <label for="tank-select">Tank</label>
-                </div>
-                <select id="tank-select" name="tank">
-                  <option>Original</option>
-                  <option>Supersport</option>
-                  <option>None</option>
-                </select>
-              </li>
+                <li>
+                  <div class="label">
+                    <label for="tank-select">Tank</label>
+                  </div>
+                  <select id="tank-select" name="tank">
+                    <option>Original</option>
+                    <option>Supersport</option>
+                    <option>None</option>
+                  </select>
+                </li>
 
-              <li>
-                <div class="label">
-                  <label for="tank-badge-select">Tank Badge</label>
-                </div>
-                <select id="tank-badge-select" name="tank-badge">
-                  <option>Original</option>
-                  <option>None</option>
-                </select>
-              </li>
+                <li>
+                  <div class="label">
+                    <label for="tank-badge-select">Tank Badge</label>
+                  </div>
+                  <select id="tank-badge-select" name="tank-badge">
+                    <option>Original</option>
+                    <option>None</option>
+                  </select>
+                </li>
 
-              <li>
-                <div class="label">
-                  <label for="exhaust-select">Exhaust</label>
-                </div>
-                <select id="exhaust-select" name="exhaust">
-                  <option>Original</option>
-                  <option>Supersport</option>
-                  <option>None</option>
-                </select>
-              </li>
+                <li>
+                  <div class="label">
+                    <label for="headlight-select">Headlight</label>
+                  </div>
+                  <select id="headlight-select" name="headlight">
+                    <option>Original</option>
+                    <option>Supersport</option>
+                    <option>None</option>
+                  </select>
+                </li>
 
-              <li>
-                <div class="label">
-                  <label for="oil-tank-select">Oil Tank</label>
-                </div>
-                <select id="oil-tank-select" name="oil-tank">
-                  <option>Original</option>
-                  <option>None</option>
-                </select>
-              </li>
+                <li>
+                  <div class="label">
+                    <label for="exhaust-select">Exhaust</label>
+                  </div>
+                  <select id="exhaust-select" name="exhaust">
+                    <option>Original</option>
+                    <option>Supersport</option>
+                    <option>None</option>
+                  </select>
+                </li>
 
-              <li>
-                <div class="label">
-                  <label for="oil-tank-badge-select">Oil Tank Badge</label>
-                </div>
-                <select id="oil-tank-badge-select" name="oil-tank-badge">
-                  <option>Original</option>
-                  <option>None</option>
-                </select>
-              </li>
-            </ul>
+                <li>
+                  <div class="label">
+                    <label for="oil-tank-select">Oil Tank</label>
+                  </div>
+                  <select id="oil-tank-select" name="oil-tank">
+                    <option>Original</option>
+                    <option>None</option>
+                  </select>
+                </li>
+
+                <li>
+                  <div class="label">
+                    <label for="oil-tank-badge-select">Oil Tank Badge</label>
+                  </div>
+                  <select id="oil-tank-badge-select" name="oil-tank-badge">
+                    <option>Original</option>
+                    <option>None</option>
+                  </select>
+                </li>
+              </ul>
+            </div>
+            <div class="colorpicker">
+              <input type='text' id="spectrum-colorpicker-flat" />
+            </div>
           </div>
           <div class="bike">
-            <div class="core"></div>
+            <canvas id="core" width="955" height="452">
+              <p>Sorry but you browser doesn't support this feature.</p>
+            </canvas>
+            <canvas id="tank" width="246" height="110" class="original draggable paintable"></canvas>
+            <canvas id="seat" width="300" height="95" class="original draggable"></canvas>
+            
+            <!-- <div class="core"></div>
             <div class="seat draggable">
               <div class="original"></div>
             </div>
@@ -102,6 +121,9 @@
               <div class="original"></div>
             </div>
             <div class="tank-badge draggable">
+              <div class="original"></div>
+            </div>
+            <div class="headlight draggable">
               <div class="original"></div>
             </div>
             <div class="oil-tank">
@@ -112,11 +134,16 @@
             </div>
             <div class="exhaust draggable">
               <div class="original"></div>
-            </div>
+            </div> -->
           </div>
         </form>
-      </div>
-    </div>
+      </div> <!-- end builder -->
+    </div> <!-- end page-wrapper -->
+
+    <script src="vendor/js/jquery-2.1.3.js"></script>
+    <script src="vendor/js/jquery-ui-1.11.4.js"></script>
+    <script src='vendor/js/spectrum.js'></script>
+    <script src="dist/main.js"></script>
   </body>
 
 </html>

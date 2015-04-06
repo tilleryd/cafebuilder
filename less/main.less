@@ -8,7 +8,6 @@ body {
 
 .page-wrapper {
   padding: 10px;
-  // background: #000;
   .gradient-bg(#f7f7f7, #808080);
 }
 
@@ -16,24 +15,32 @@ body {
   .overlay(auto, 10px);
 }
 
-.selects {
+.tools {
   margin: 10px;
-  // .overlay(20px);
 
-  .label {
-    min-width: 120px;
+  .selects {
     float: left;
-    text-align: right;
     margin-right: 10px;
-  }
 
-  select {
-    min-width: 100px;
-    border: 1px solid #333;
-  }
+    .label {
+      min-width: 120px;
+      float: left;
+      text-align: right;
+      margin-right: 10px;
+    }
 
-  ul li {
-    list-style: none;
+    select {
+      min-width: 100px;
+      border: 1px solid #333;
+    }
+
+    ul {
+      margin: 0;
+
+      li {
+        list-style: none;
+      }
+    }
   }
 }
 
@@ -42,36 +49,35 @@ body {
   width: 1011px; 
   position: relative;
   margin: 100px auto;
+}
 
-  div:not(.core) {
-    z-index: 1;  
+canvas {
+  &:not(#core) {
+    position: absolute !important;
+    z-index: 1;
+  }
+
+  &#seat {
+    &.original {
+      top: 46px;
+      left: 110px;
+    }
+  }
+
+  &#tank {
+    &.original {
+      top: 25px;
+      left: 396px;
+    }
+
+    &.supersport {
+      top: 36px;
+      left: 376px;
+    }
   }
 }
 
-.original {
-  background: url('../images/cb750-original-sprite.png') no-repeat;
-}
-
-.supersport {
-  background: url('../images/cb750-custom-sprite.png') no-repeat;
-}
-
-.core {
-  height: 450px;
-  width: inherit;
-  z-index: 0;
-  .original;
-  .overlay(5px, auto, auto, 8px);
-}
-
-.none {
-  background: none;
-}
-
-.draggable div {
-  .grabbable;
-}
-
+/*
 .seat {
   .original {
     background-position: 0 -450px;  
@@ -85,6 +91,13 @@ body {
     height: 49px;
     width: 242px;
     .overlay(88px, auto, auto, 148px);
+  }
+
+  .racey {
+    background-position: -241px -95px;
+    height: 48px;
+    width: 231px;
+    .overlay(88px, auto, auto, 178px); 
   }
 }
 
@@ -110,6 +123,22 @@ body {
     height: 10px;
     width: 88px;
     .overlay(72px, auto, auto, 527px);
+  }
+}
+
+.headlight {
+  .original {
+    background-position: 0 -1075px;
+    height: 97px;
+    width: 70px;
+    .overlay(0, auto, auto, 684px);
+  }
+
+  .supersport {
+    background-position: 0 0;
+    height: 95px;
+    width: 278px;
+    .overlay(46px, auto, auto, 376px);
   }
 }
 
@@ -145,4 +174,12 @@ body {
     width: 414px;
     .overlay(205px, auto, auto, 215px);
   }
+}
+*/
+
+div.rui-colorpicker div.field,
+div.rui-colorpicker div.field div.pointer,
+div.rui-colorpicker div.colors,
+div.rui-colorpicker div.colors div.pointer {
+  background-image: url(../images/colorpicker.png);
 }
