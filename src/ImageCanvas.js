@@ -3,11 +3,11 @@
 class ImageCanvas {
 
   constructor(config) {
-  	this.canvas = null;
-  	this.canvasContext = null;
+    this.canvas = null;
+    this.canvasContext = null;
     this.config = config;
     this.id = config.id;
-  	this.image = null;
+    this.image = null;
     this.imageData = null;
     this.imageFile = config.file;
     this.imageFolder = '/images';
@@ -33,7 +33,7 @@ class ImageCanvas {
   }
 
   loadImage() {
-  	this.image = new Image();
+    this.image = new Image();
     this.image.src = `${this.imageFolder}/${this.imageFile}`;
     this.image.onload = () => {
       this.onImageLoad();
