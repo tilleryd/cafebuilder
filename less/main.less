@@ -62,6 +62,11 @@ canvas {
       top: 46px;
       left: 110px;
     }
+
+    &.supersport {
+      top: 40px;
+      left: 154px;
+    }
   }
 
   &#tank {
@@ -98,22 +103,6 @@ canvas {
     height: 48px;
     width: 231px;
     .overlay(88px, auto, auto, 178px); 
-  }
-}
-
-.tank {
-  .original {
-    background-position: 0 -543px;
-    height: 110px;
-    width: 246px;
-    .overlay(30px, auto, auto, 404px);
-  }
-
-  .supersport {
-    background-position: 0 0;
-    height: 95px;
-    width: 278px;
-    .overlay(46px, auto, auto, 376px);
   }
 }
 
@@ -177,9 +166,14 @@ canvas {
 }
 */
 
-div.rui-colorpicker div.field,
-div.rui-colorpicker div.field div.pointer,
-div.rui-colorpicker div.colors,
-div.rui-colorpicker div.colors div.pointer {
-  background-image: url(../images/colorpicker.png);
+
+/* Spectrum overrides */
+.sp-container {
+  border: 0;
+  background: none;
 }
+
+.sp-picker-container {
+  border-left: none;
+}
+

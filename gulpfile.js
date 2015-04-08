@@ -16,17 +16,15 @@ gulp.task('build', function () {
   .bundle()
   .pipe(source('main.js'))
   .pipe(gulp.dest('./dist'));
-});
 
-gulp.task('less', function() {
   gulp.src('./less/**/*.less')
     .pipe(less())
-    .pipe(gulp.dest('./css'))
+    .pipe(gulp.dest('./css'));
 });
 
 gulp.task('watch', function() {
-  gulp.watch(['./main.js', './src/**/*.js'], ['build'])
-  gulp.watch('./less/**/*.less', ['less'])
+  gulp.watch(['./main.js', './src/**/*.js'], ['build']);
+  gulp.watch('./less/**/*.less', ['build']);
 });
  
-gulp.task('default', ['build', 'watch', 'less']);
+gulp.task('default', ['build', 'watch']);

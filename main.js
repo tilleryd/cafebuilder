@@ -1,4 +1,4 @@
-// app.js
+// main.js
 
 import ImageCanvas from './src/ImageCanvas';
 
@@ -13,17 +13,20 @@ $(document).ready(function() {
     {
       id: 'tank',
       file: 'tanks.png',
+      color: activeColor,
       original: {
         x: 0,
         y: 0,
         h: 110,
-        w: 246
+        w: 246,
+        paintable: true
       },
       supersport: {
         x: -246,
         y: 0,
         h: 95,
-        w: 278
+        w: 278,
+        paintable: true
       }
     },
     {
@@ -36,10 +39,11 @@ $(document).ready(function() {
         w: 300
       },
       supersport: {
-        x: -100,
+        x: -305,
         y: 0,
         h: 95,
-        w: 278
+        w: 240,
+        paintable: true
       }
     }
   ]
@@ -59,6 +63,7 @@ $(document).ready(function() {
     showButtons: false,
     move: function(color) {
       activeColor = color.toHexString();
+      $('canvas').trigger('changeColor', activeColor);
     }
   });
 
