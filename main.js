@@ -4,6 +4,7 @@ import ImageCanvas from './src/ImageCanvas';
 
 $(document).ready(function() {
 
+  let $title = $('h1.title');
   let activeColor = '#f90000';
   let canvasConfig = [
     {
@@ -48,9 +49,7 @@ $(document).ready(function() {
     }
   ]
 
-  for(let config of canvasConfig) {
-    new ImageCanvas(config);
-  }
+  for(let config of canvasConfig) { new ImageCanvas(config); }
 
   $('.draggable').draggable({
     opacity: 0.8
@@ -71,5 +70,22 @@ $(document).ready(function() {
     var name = $(this).attr('name');
     $(`#${name}`).trigger('changeImage', {val: $(this).val().toLowerCase(), color: activeColor});
   });
+
+  $title.lettering();
+
+  var pulseTitle = function(idx = 0) {
+    var timeout = setTimeout(function() {
+      $title.children().eq(idx).addClass('pulse');
+
+      if(idx === $title.children().length) {
+        clearTimeout(timeout);
+        return;
+      } else {
+        pulseTitle(++idx);
+      }
+    }, 50);
+  };
+
+  pulseTitle();
 
 });
