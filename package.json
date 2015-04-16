@@ -8,6 +8,10 @@
   },
   "author": "David Tillery",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tilleryd/cafebuilder.git"
+  },
   "devDependencies": {
     "babelify": "^6.0.1",
     "browserify": "^9.0.7",
