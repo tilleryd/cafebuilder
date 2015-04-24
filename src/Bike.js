@@ -7,12 +7,12 @@ class Bike {
 
   constructor(activeColor) {
     this.activeColor = activeColor;
-	  this.render();
+    this.render();
   }
 
   render() {
   	new ImageCanvas({id: 'core', file: 'core.png'});
-    for(let config of Config) { new ImageCanvas(config, this.activeColor); }
+  	for(let config of Config) { new ImageCanvas(config, this.activeColor); }
   }
 }
 

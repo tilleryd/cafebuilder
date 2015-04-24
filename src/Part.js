@@ -7,8 +7,8 @@ class Part extends React.Component {
       <li className="part">
         {this.props.name}
       </li>
-    );  
-	}
+    );
+  }
 
 }
 

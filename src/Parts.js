@@ -9,12 +9,12 @@ class Parts extends React.Component {
         {this.props.partName}
         {
           this.props.parts.map(part => {
-        	  return <Part name={part.name} />;
+            return <Part name={part.name} />;
           })
         }
       </ul>
-    );  
-	}
+    );
+  }
 
 }
 
