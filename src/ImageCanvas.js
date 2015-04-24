@@ -49,7 +49,7 @@ class ImageCanvas {
   onImageLoad() {
     this.canvasContext.drawImage(this.image, 0, 0);
     this.setImageData();
-    if(this.activeConfig.paintable) {
+    if(this.activeConfig && this.activeConfig['paintable']) {
       this.changeColor(this.activeColor);
     }
   }
