@@ -1,7 +1,7 @@
 // Bike.js
 
 import ImageCanvas from 'ImageCanvas';
-import Config from 'config';
+import PartsConfig from 'partsConfig';
 
 class Bike {
 
@@ -12,7 +12,7 @@ class Bike {
 
   render() {
   	new ImageCanvas({id: 'core', file: 'core.png'});
-  	for(let config of Config) { new ImageCanvas(config, this.activeColor); }
+  	for(let part of PartsConfig) { new ImageCanvas(part, this.activeColor); }
   }
 }
 

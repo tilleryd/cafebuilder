@@ -54,17 +54,17 @@ class ImageCanvas {
     }
   }
 
-  onChangeImage(data) {
-    this.activeConfig = this.config.types[data.val];
+  onChangeImage(partName) {
+    this.activeConfig = this.findPartConfig(partName);
     this.canvasContext.clearRect(0, 0, this.canvas.get(0).width, this.canvas.get(0).height);
-    this.canvas.get(0).width = this.config.types[data.val].w;
-    this.canvas.get(0).height = this.config.types[data.val].h;
-    this.canvasContext.drawImage(this.image, this.config.types[data.val].x, this.config.types[data.val].y);
-    this.setImageData()    
-    this.changeColor(data.color);
+    this.canvas.get(0).width = this.activeConfig.w;
+    this.canvas.get(0).height = this.activeConfig.h;
+    this.canvasContext.drawImage(this.image, this.activeConfig.x, this.activeConfig.y);
+    this.setImageData();   
+    this.changeColor(this.activeColor);
 
     let cssClasses = this.canvas.attr('class').split(' ');
-    cssClasses[0] = data.val;
+    cssClasses[0] = partName;
     this.canvas
       .removeClass()
       .addClass(cssClasses.join(' '));
@@ -80,6 +80,7 @@ class ImageCanvas {
     this.canvasContext.globalAlpha = 0.6;
     this.canvasContext.fillStyle = color;
     this.canvasContext.fillRect(0, 0, this.canvas.get(0).width, this.canvas.get(0).height);
+    this.activeColor = color;
   }
 
   setImageData() {
@@ -88,6 +89,12 @@ class ImageCanvas {
 
   getDefaultConfig(config) {
     return config['parts'] ? config.parts[0] : null;
+  }
+
+  findPartConfig(partName) {
+    for(let part of this.config.parts) {
+      if (partName === part.name) { return part; }
+    }
   }
 
 }

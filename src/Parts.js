@@ -6,10 +6,10 @@ class Parts extends React.Component {
   render() {
     return (
       <ul className="parts">
-        {this.props.partName}
+        {this.props.partId} 
         {
           this.props.parts.map(part => {
-            return <Part name={part.name} />;
+            return <Part partId={this.props.partId} partName={part.name} />;
           })
         }
       </ul>

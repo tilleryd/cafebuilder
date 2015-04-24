@@ -9,17 +9,16 @@ import React from 'react';
 // app
 import Bike from 'Bike';
 import Parts from 'Parts';
-import Config from 'config';
+import PartsConfig from 'partsConfig';
 
 $(document).ready(function() {
 
-  let $title = $('h1.title');
-  let activeColor = '#f90000';
+  let activeColor = '#666666';
 
   $('.draggable').draggable({opacity: 0.8});
 
   $('#spectrum-colorpicker-flat').spectrum({
-    color: '#f90000',
+    color: activeColor,
     flat: true,
     preferredFormat: 'rgb',
     showButtons: false,
@@ -29,15 +28,10 @@ $(document).ready(function() {
     }
   });
 
-  $('select').on('change', function() {
-    var name = $(this).attr('name');
-    $(`#${name}`).trigger('changeImage', {val: $(this).val().toLowerCase(), color: activeColor});
-  });
-
   new Bike(activeColor);
 
-  for(let part of Config) {
-    React.render(<Parts partName={part.id} parts={part.parts} />, document.getElementById(`${part.id}s`));
+  for(let part of PartsConfig) {
+    React.render(<Parts partId={part.id} parts={part.parts} />, document.getElementById(`${part.id}s`));
   }
 
 });

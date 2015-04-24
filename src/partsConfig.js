@@ -1,4 +1,4 @@
-var config = [
+module.exports = [
   {
     id: 'tank',
     file: 'tanks.png',
@@ -43,5 +43,3 @@ var config = [
     ]
   }
 ]
-
-module.exports = config;
