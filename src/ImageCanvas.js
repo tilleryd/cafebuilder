@@ -2,8 +2,9 @@
 
 class ImageCanvas {
 
-  constructor(config) {
-    this.activeConfig = config['original'];
+  constructor(config, activeColor) {
+    this.activeColor = activeColor;
+    this.activeConfig = this.getDefaultConfig(config);
     this.canvas = null;
     this.canvasContext = null;
     this.config = config;
@@ -47,18 +48,18 @@ class ImageCanvas {
 
   onImageLoad() {
     this.canvasContext.drawImage(this.image, 0, 0);
-    this.setImageData()
-    if(this.config.color != null) {
-      this.changeColor(this.config.color);
+    this.setImageData();
+    if(this.activeConfig.paintable) {
+      this.changeColor(this.activeColor);
     }
   }
 
   onChangeImage(data) {
-    this.activeConfig = this.config[data.val];
+    this.activeConfig = this.config.types[data.val];
     this.canvasContext.clearRect(0, 0, this.canvas.get(0).width, this.canvas.get(0).height);
-    this.canvas.get(0).width = this.config[data.val].w;
-    this.canvas.get(0).height = this.config[data.val].h;
-    this.canvasContext.drawImage(this.image, this.config[data.val].x, this.config[data.val].y);
+    this.canvas.get(0).width = this.config.types[data.val].w;
+    this.canvas.get(0).height = this.config.types[data.val].h;
+    this.canvasContext.drawImage(this.image, this.config.types[data.val].x, this.config.types[data.val].y);
     this.setImageData()    
     this.changeColor(data.color);
 
@@ -83,6 +84,10 @@ class ImageCanvas {
 
   setImageData() {
     this.imageData = this.canvasContext.getImageData(0, 0, this.canvas.get(0).width, this.canvas.get(0).height);
+  }
+
+  getDefaultConfig(config) {
+    return config['parts'] ? config.parts[0] : null;
   }
 
 }
