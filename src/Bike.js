@@ -1,19 +1,31 @@
 // Bike.js
 
-import ImageCanvas from 'ImageCanvas';
-import PartsConfig from 'partsConfig';
+import React from 'react';
+import ActivePart from 'ActivePart';
+// import PartsConfig from 'partsConfig';
 
-class Bike {
-
-  constructor(activeColor) {
-    this.activeColor = activeColor;
-    this.render();
-  }
+class Bike extends React.Component {
 
   render() {
-  	new ImageCanvas({id: 'core', file: 'core.png'});
-  	for(let part of PartsConfig) { new ImageCanvas(part, this.activeColor); }
+  	let coreConfig = {
+  		id: 'core',
+  		file: 'core.png',
+  		w: '955',
+  		h: '452'
+  	}
+
+  	return (
+  		<div id="bike" className="bike">
+	  		<ActivePart config={coreConfig} activeColor={''} />
+			  {
+	        this.props.parts.map(part => {
+	  	      return <ActivePart config={part} activeColor={this.props.activeColor} draggable={true} />
+	        })
+	      }
+      </div>
+  	);
   }
+
 }
 
 module.exports = Bike;

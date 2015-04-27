@@ -15,8 +15,6 @@ $(document).ready(function() {
 
   let activeColor = '#666666';
 
-  $('.draggable').draggable({opacity: 0.8});
-
   $('#spectrum-colorpicker-flat').spectrum({
     color: activeColor,
     flat: true,
@@ -28,10 +26,16 @@ $(document).ready(function() {
     }
   });
 
-  new Bike(activeColor);
+  React.render(
+    <Bike parts={PartsConfig} activeColor={activeColor} />, 
+    document.getElementById('bike-wrapper')
+  );
 
   for(let part of PartsConfig) {
-    React.render(<Parts partId={part.id} parts={part.parts} />, document.getElementById(`${part.id}s`));
+    React.render(
+      <Parts partId={part.id} parts={part.parts} />, 
+      document.getElementById(`${part.id}s`)
+    );
   }
 
 });
