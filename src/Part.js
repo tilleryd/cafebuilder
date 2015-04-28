@@ -15,7 +15,7 @@ class Part extends React.Component {
 
   _onClick(e) {
     e.preventDefault();
-  	$(`#${this.state.partId}`).trigger('changeImage', this.state.partName);
+    $(`#${this.state.partId}`).trigger('changeImage', this.state.partName);
   }
 
   render() {

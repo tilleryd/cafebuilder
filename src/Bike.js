@@ -24,26 +24,26 @@ class Bike extends React.Component {
 
   	return (
   		<div id="bike" className="bike">
-	  		<ActivePart config={coreConfig} activeColor={''} />
-			  {
-	        this.props.parts.map(part => {
-	  	      return <ActivePart config={part} activeColor={this.props.activeColor} draggable={true} />
-	        })
-	      }
-      </div>
-  	);
+  		  <ActivePart config={coreConfig} activeColor={''} />
+  		  {
+  		  	this.props.parts.map(part => {
+  		  		return <ActivePart config={part} activeColor={this.props.activeColor} draggable={true} />
+  		  	})
+  		  }
+  		</div>
+    );
   }
 
 }
 
 Bike.propTypes = {
 	parts: React.PropTypes.array,
-  activeColor: React.PropTypes.string
+	activeColor: React.PropTypes.string
 };
 
 Bike.defaultProps = {
-  parts: [],
-  activeColor: ''
+	parts: [],
+	activeColor: ''
 };
 
 module.exports = Bike;
