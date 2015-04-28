@@ -2,9 +2,17 @@
 
 import React from 'react';
 import ActivePart from 'ActivePart';
-// import PartsConfig from 'partsConfig';
 
 class Bike extends React.Component {
+
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      parts: props.parts,
+      activeColor: props.activeColor
+    }
+  }
 
   render() {
   	let coreConfig = {
@@ -27,5 +35,15 @@ class Bike extends React.Component {
   }
 
 }
+
+Bike.propTypes = {
+	parts: React.PropTypes.array,
+  activeColor: React.PropTypes.string
+};
+
+Bike.defaultProps = {
+  parts: [],
+  activeColor: ''
+};
 
 module.exports = Bike;

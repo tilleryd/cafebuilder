@@ -1,22 +1,43 @@
+// Part.js
+
 import React from 'react';
 
 class Part extends React.Component {
 
-  onClick(e) {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      partId: props.partId,
+      partName: props.partName
+    }
+  }
+
+  _onClick(e) {
     e.preventDefault();
-  	$(`#${this.props.partId}`).trigger('changeImage', this.props.partName);
+  	$(`#${this.state.partId}`).trigger('changeImage', this.state.partName);
   }
 
   render() {
     return (
       <li className="part">
-        <button onClick={this.onClick.bind(this)}>
-          {this.props.partName}
+        <button onClick={this._onClick.bind(this)}>
+          {this.state.partName}
         </button>
       </li>
     );
   }
 
 }
+
+Part.propTypes = {
+  partId: React.PropTypes.string,
+  partName: React.PropTypes.string
+};
+
+Part.defaultProps = {
+  partId: '',
+  partName: ''
+};
 
 module.exports = Part;

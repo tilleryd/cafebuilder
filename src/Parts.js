@@ -1,15 +1,26 @@
+// Parts.js
+
 import React from 'react';
 import Part from 'Part';
 
 class Parts extends React.Component {
 
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      partId: props.partId,
+      parts: props.parts
+    }
+  }
+
   render() {
     return (
       <ul className="parts">
-        {this.props.partId}s
+        {this.state.partId}s
         {
-          this.props.parts.map(part => {
-            return <Part partId={this.props.partId} partName={part.name} />
+          this.state.parts.map(part => {
+            return <Part partId={this.state.partId} partName={part.name} />
           })
         }
       </ul>
@@ -17,5 +28,15 @@ class Parts extends React.Component {
   }
 
 }
+
+Parts.propTypes = {
+  partId: React.PropTypes.string,
+  parts: React.PropTypes.array
+};
+
+Parts.defaultProps = {
+  partId: '',
+  parts: []
+};
 
 module.exports = Parts;
