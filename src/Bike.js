@@ -23,7 +23,7 @@ class Bike extends React.Component {
   	}
 
   	return (
-  		<div id="bike" className="bike">
+  		<div className="bike">
   		  <ActivePart config={coreConfig} activeColor={''} />
   		  {
   		  	this.props.parts.map(part => {

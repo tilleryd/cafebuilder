@@ -1,6 +1,8 @@
 // ActivePart.js
 
+import jqueryUI from 'jquery-ui';
 import React from 'react';
+import PartStore from 'stores/PartStore';
 
 class ActivePart extends React.Component {
 
@@ -24,11 +26,17 @@ class ActivePart extends React.Component {
   componentDidMount() {
     this.canvas = React.findDOMNode(this);
     this.canvasContext = this.canvas.getContext('2d');
-    this._registerEvents();
+    // this._registerEvents();
     this._loadImage();
     if(this.state.draggable) {
       $(this.canvas).draggable({opacity: 0.8});
     }
+
+    PartStore.addChangeListener(this._onChangePart.bind(this));
+  }
+
+  componentWillUnmount() {
+    PartStore.removeChangeListener(this._onChangePart);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -58,15 +66,19 @@ class ActivePart extends React.Component {
     }
   }
 
-  _registerEvents() {
-    $(this.canvas)
-      .on('changeImage', (e, partName) => {
-        this.setState({config: this._getPartConfig(partName)});
-      })
-      .on('changeColor', (e, color) => {
-        this.setState({activeColor: color});
-      });
+  _onChangePart(partName) {
+    this.setState({config: this._getPartConfig(partName)});
   }
+
+  // _registerEvents() {
+  //   $(this.canvas)
+  //     .on('changeImage', (e, partName) => {
+  //       this.setState({config: this._getPartConfig(partName)});
+  //     })
+  //     .on('changeColor', (e, color) => {
+  //       this.setState({activeColor: color});
+  //     });
+  // }
 
   _loadImage() {
     this.image = new Image();
@@ -113,11 +125,11 @@ class ActivePart extends React.Component {
 }
 
 ActivePart.propTypes = {
-  id: React.PropTypes.string,
-  imageFile: React.PropTypes.string,
-  config: React.PropTypes.object, 
-  activeColor: React.PropTypes.string,
-  draggable: React.PropTypes.bool
+  id: React.PropTypes.string.isRequired,
+  imageFile: React.PropTypes.string.isRequired,
+  config: React.PropTypes.object.isRequired, 
+  activeColor: React.PropTypes.string.isRequired,
+  draggable: React.PropTypes.bool.isRequired
 };
 
 ActivePart.defaultProps = {

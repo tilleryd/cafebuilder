@@ -7,13 +7,13 @@ var less = require('gulp-less');
  
 gulp.task('build', function() {
   browserify({
-    entries: 'main.js',
+    entries: 'app.js',
     paths: './src',
     debug: false
   })
   .transform(babelify)
   .bundle()
-  .pipe(source('main.js'))
+  .pipe(source('bundle.js'))
   .pipe(gulp.dest('./dist'));
 
   gulp

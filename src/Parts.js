@@ -9,33 +9,39 @@ class Parts extends React.Component {
     super(props);
     
     this.state = {
-      partId: props.partId,
       parts: props.parts
     }
   }
 
   render() {
     return (
-      <ul className="parts">
-        {this.state.partId}s
+      <div id="parts">
         {
-          this.state.parts.map(part => {
-            return <Part partId={this.state.partId} partName={part.name} />
+          this.state.parts.map(partType => {
+            return (
+              <div id={partType.id}s>
+                <ul className="parts">
+                  {
+                    partType.parts.map(part => {
+                      return <Part partId={partType.id} partName={part.name} />
+                    })
+                  }
+                </ul>
+              </div>
+            )
           })
         }
-      </ul>
+      </div>
     );
   }
 
 }
 
 Parts.propTypes = {
-  partId: React.PropTypes.string,
   parts: React.PropTypes.array
 };
 
 Parts.defaultProps = {
-  partId: '',
   parts: []
 };
 

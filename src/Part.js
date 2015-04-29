@@ -1,6 +1,7 @@
 // Part.js
 
 import React from 'react';
+import PartActions from 'actions/PartActions';
 
 class Part extends React.Component {
 
@@ -15,7 +16,8 @@ class Part extends React.Component {
 
   _onClick(e) {
     e.preventDefault();
-    $(`#${this.state.partId}`).trigger('changeImage', this.state.partName);
+    PartActions.changePart(this.state.partName);
+    // $(`#${this.state.partId}`).trigger('changeImage', this.state.partName);
   }
 
   render() {
