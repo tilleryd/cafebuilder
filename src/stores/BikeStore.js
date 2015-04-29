@@ -1,4 +1,4 @@
-// PartStore.js
+// BikeStore.js
 
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import PartConstants from '../constants/PartConstants';
@@ -10,7 +10,7 @@ let EventEmitter = require('events').EventEmitter;
 
 let CHANGE_EVENT = 'change';
 
-let _parts = {};
+let _parts = PartsConfig;
 
 /**
  * Update a Part item.
@@ -22,7 +22,7 @@ function update(id, updates) {
   _parts[id] = assign({}, _parts[id], updates);
 }
 
-let PartStore = assign({}, EventEmitter.prototype, {
+let BikeStore = assign({}, EventEmitter.prototype, {
 
   /**
    * Get the entire collection of parts.
@@ -60,7 +60,7 @@ AppDispatcher.register(action => {
       let partName = action.partName.trim();
       if (partName !== '') {
         //update(action.id, {partName: partName});
-        PartStore.emitChange();
+        BikeStore.emitChange();
       }
       break;
 
@@ -69,4 +69,4 @@ AppDispatcher.register(action => {
   }
 });
 
-module.exports = PartStore;
+module.exports = BikeStore;

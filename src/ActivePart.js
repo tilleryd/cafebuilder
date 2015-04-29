@@ -2,7 +2,8 @@
 
 import jqueryUI from 'jquery-ui';
 import React from 'react';
-import PartStore from 'stores/PartStore';
+import BikeStore from 'stores/BikeStore';
+import partsConfig from 'partsConfig';
 
 class ActivePart extends React.Component {
 
@@ -10,9 +11,9 @@ class ActivePart extends React.Component {
     super(props);
     
     this.state = {
-      id: props.config.id,
-      imageFile: props.config.file,
-      config: props.config['parts'] ? props.config.parts[0] : props.config, 
+      id: props.id,
+      imageFile: partsConfig[props.id].file,
+      config: partsConfig[props.id]['parts'] ? partsConfig[props.id].parts[props.partType] : partsConfig[props.id], 
       activeColor: props.activeColor,
       draggable: props.draggable
     }
@@ -32,11 +33,11 @@ class ActivePart extends React.Component {
       $(this.canvas).draggable({opacity: 0.8});
     }
 
-    PartStore.addChangeListener(this._onChangePart.bind(this));
+    BikeStore.addChangeListener(this._onChangePart.bind(this));
   }
 
   componentWillUnmount() {
-    PartStore.removeChangeListener(this._onChangePart);
+    BikeStore.removeChangeListener(this._onChangePart);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -125,11 +126,11 @@ class ActivePart extends React.Component {
 }
 
 ActivePart.propTypes = {
-  id: React.PropTypes.string.isRequired,
-  imageFile: React.PropTypes.string.isRequired,
-  config: React.PropTypes.object.isRequired, 
-  activeColor: React.PropTypes.string.isRequired,
-  draggable: React.PropTypes.bool.isRequired
+  id: React.PropTypes.string,
+  imageFile: React.PropTypes.string,
+  config: React.PropTypes.object, 
+  activeColor: React.PropTypes.string,
+  draggable: React.PropTypes.bool
 };
 
 ActivePart.defaultProps = {

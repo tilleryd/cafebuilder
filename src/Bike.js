@@ -15,20 +15,17 @@ class Bike extends React.Component {
   }
 
   render() {
-  	let coreConfig = {
-  		id: 'core',
-  		file: 'core.png',
-  		w: '955',
-  		h: '452'
-  	}
-
   	return (
   		<div className="bike">
-  		  <ActivePart config={coreConfig} activeColor={''} />
+  		  <ActivePart id={'core'} activeColor={''} />
   		  {
-  		  	this.props.parts.map(part => {
-  		  		return <ActivePart config={part} activeColor={this.props.activeColor} draggable={true} />
-  		  	})
+  		  	Object.keys(this.props.parts).map(key => {
+		  		  return <ActivePart
+                      id={key}
+                      partType={this.props.parts[key].partType}
+                      activeColor={this.props.activeColor}
+                      draggable={true} />
+          })
   		  }
   		</div>
     );

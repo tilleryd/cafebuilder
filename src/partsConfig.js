@@ -1,45 +1,44 @@
-module.exports = [
-  {
-    id: 'tank',
+module.exports = {
+  core: {
+    file: 'core.png',
+    w: '955',
+    h: '452'
+  },
+  tank: {
     file: 'tanks.png',
-    parts: [
-      {
-      	name: 'original',
+    parts: {
+      original: {
       	x: 0,
       	y: 0,
       	h: 110,
       	w: 246,
       	paintable: true
       },
-      {
-      	name: 'supersport',
+      supersport: {
       	x: -246,
       	y: 0,
       	h: 95,
       	w: 278,
       	paintable: true
       }
-    ]
+    }
   },
-  {
-    id: 'seat',
+  seat: {
     file: 'seats.png',
-    parts: [
-      {
-      	name: 'original',
+    parts: {
+      original: {
       	x: 0,
       	y: 0,
       	h: 95,
       	w: 300
       },
-      {
-      	name: 'supersport',
+      supersport: {
       	x: -305,
       	y: 0,
       	h: 95,
       	w: 240,
       	paintable: true
       }
-    ]
+    }
   }
-]
+}
