@@ -18,13 +18,14 @@ class Parts extends React.Component {
       <div id="parts">
         {
           Object.keys(this.state.parts).map(key => {
-            if(!this.state.parts[key]['parts']) { return; }
+            if(key === 'core') { return }
             return (
-              <div id={this.state.parts[key]}s>
+              <div>
+                {key}
                 <ul className="parts">
                   {
                     Object.keys(this.state.parts[key].parts).map(partKey => {
-                      return <Part partId={key} partName={partKey} />
+                      return <Part id={key} name={partKey} />
                     })
                   }
                 </ul>

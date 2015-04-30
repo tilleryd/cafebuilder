@@ -2,6 +2,7 @@
 
 import React from 'react';
 import ActivePart from 'ActivePart';
+import partsConfig from 'partsConfig';
 
 class Bike extends React.Component {
 
@@ -9,22 +10,21 @@ class Bike extends React.Component {
     super(props);
     
     this.state = {
-      parts: props.parts,
-      activeColor: props.activeColor
+      parts: props.parts
     }
   }
 
   render() {
   	return (
   		<div className="bike">
-  		  <ActivePart id={'core'} activeColor={''} />
   		  {
   		  	Object.keys(this.props.parts).map(key => {
+            let part = this.props.parts[key];
 		  		  return <ActivePart
+                      config={partsConfig[key].parts[part.name]}
                       id={key}
-                      partType={this.props.parts[key].partType}
-                      activeColor={this.props.activeColor}
-                      draggable={true} />
+                      imageFile={partsConfig[key].file}
+                      part={part} />
           })
   		  }
   		</div>
@@ -34,13 +34,11 @@ class Bike extends React.Component {
 }
 
 Bike.propTypes = {
-	parts: React.PropTypes.array,
-	activeColor: React.PropTypes.string
+	parts: React.PropTypes.object
 };
 
 Bike.defaultProps = {
-	parts: [],
-	activeColor: ''
+	parts: {}
 };
 
 module.exports = Bike;

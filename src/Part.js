@@ -9,22 +9,21 @@ class Part extends React.Component {
     super(props);
     
     this.state = {
-      partId: props.partId,
-      partName: props.partName
+      id: props.id,
+      name: props.name
     }
   }
 
   _onClick(e) {
     e.preventDefault();
-    PartActions.changePart(this.state.partName);
-    // $(`#${this.state.partId}`).trigger('changeImage', this.state.partName);
+    PartActions.changePart(this.state.id, this.state.name);
   }
 
   render() {
     return (
       <li className="part">
         <button onClick={this._onClick.bind(this)}>
-          {this.state.partName}
+          {this.state.name}
         </button>
       </li>
     );
@@ -33,13 +32,13 @@ class Part extends React.Component {
 }
 
 Part.propTypes = {
-  partId: React.PropTypes.string,
-  partName: React.PropTypes.string
+  id: React.PropTypes.string,
+  name: React.PropTypes.string
 };
 
 Part.defaultProps = {
-  partId: '',
-  partName: ''
+  id: '',
+  name: ''
 };
 
 module.exports = Part;

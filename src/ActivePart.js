@@ -5,19 +5,21 @@ import React from 'react';
 import BikeStore from 'stores/BikeStore';
 import partsConfig from 'partsConfig';
 
+function getPartState(id) {
+  return {
+    part: BikeStore.getPart(id)
+  };
+}
+
 class ActivePart extends React.Component {
 
   constructor(props) {
     super(props);
     
     this.state = {
-      id: props.id,
-      imageFile: partsConfig[props.id].file,
-      config: partsConfig[props.id]['parts'] ? partsConfig[props.id].parts[props.partType] : partsConfig[props.id], 
-      activeColor: props.activeColor,
-      draggable: props.draggable
+      part: props.part
     }
-
+    
     this.canvas = null;
     this.canvasContext = null;
     this.image = null;
@@ -27,9 +29,8 @@ class ActivePart extends React.Component {
   componentDidMount() {
     this.canvas = React.findDOMNode(this);
     this.canvasContext = this.canvas.getContext('2d');
-    // this._registerEvents();
     this._loadImage();
-    if(this.state.draggable) {
+    if(this.props.config.draggable) {
       $(this.canvas).draggable({opacity: 0.8});
     }
 
@@ -37,53 +38,41 @@ class ActivePart extends React.Component {
   }
 
   componentWillUnmount() {
-    BikeStore.removeChangeListener(this._onChangePart);
+    BikeStore.removeChangeListener(this._onChangePart.bind(this));
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.config !== this.state.config) {
+    if(prevState.part.name !== this.state.part.name) {
+      this.props.config = partsConfig[this.props.id].parts[this.state.part.name];
       this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      this.canvas.width = this.state.config.w;
-      this.canvas.height = this.state.config.h;
-      this.canvasContext.drawImage(this.image, this.state.config.x, this.state.config.y);
+      this.canvas.width = this.props.config.w;
+      this.canvas.height = this.props.config.h;
+      this.canvasContext.drawImage(this.image, this.props.config.x, this.props.config.y);
       this._setImageData();
-
-      let cssClasses = $(this.canvas).attr('class').split(' ');
-      cssClasses[0] = this.state.config.name;
-      $(this.canvas)
-        .removeClass()
-        .addClass(cssClasses.join(' '));
     }
 
-    if(this.state.config['paintable']) {
+    /*
+    if(this.props.config['paintable']) {
       // first reset to original image
       this.canvasContext.putImageData(this.imageData, 0, 0);
 
       // then colorize
       this.canvasContext.globalCompositeOperation = 'source-atop';
       this.canvasContext.globalAlpha = 0.8;
-      this.canvasContext.fillStyle = this.state.activeColor;
+      this.canvasContext.fillStyle = this.state.part.color;
       this.canvasContext.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
+    */
   }
 
-  _onChangePart(partName) {
-    this.setState({config: this._getPartConfig(partName)});
+  _onChangePart(id) {
+    if (id !== this.props.id) { return }
+    this.setState(getPartState(id));
   }
-
-  // _registerEvents() {
-  //   $(this.canvas)
-  //     .on('changeImage', (e, partName) => {
-  //       this.setState({config: this._getPartConfig(partName)});
-  //     })
-  //     .on('changeColor', (e, color) => {
-  //       this.setState({activeColor: color});
-  //     });
-  // }
 
   _loadImage() {
     this.image = new Image();
-    this.image.src = `/images/${this.state.imageFile}`;
+    this.image.src = `/images/${this.props.imageFile}`;
     this.image.onload = () => {
       this.canvasContext.drawImage(this.image, 0, 0);
       this._setImageData();
@@ -94,31 +83,21 @@ class ActivePart extends React.Component {
     this.imageData = this.canvasContext.getImageData(0, 0, this.canvas.width, this.canvas.height);
   }
 
-  _getPartConfig(partName) {
-    for(let part of this.props.config.parts) {
-      if (partName === part.name) { 
-        return part; 
-      }
+  _getCSSClasses() {
+    let classes = this.state.part.name;
+    if (this.props.config.draggable) {
+      classes += ' draggable';
     }
-  }
-
-  _onMouseOver(e) {
-    //TODO: show the parts list
+    return classes;
   }
 
   render() {
-    let classes = 'original';
-    if (this.state.draggable) {
-      classes += ' draggable';
-    }
-
     return (
       <canvas
-        id={this.state.id}
-        width={this.state.config.w}
-        height={this.state.config.h}
-        className={classes}
-        onMouseOver={this._onMouseOver.bind(this)}>
+        id={this.props.id}
+        width={this.props.config.w}
+        height={this.props.config.h}
+        className={this._getCSSClasses()}>
       </canvas>
     );
   }
@@ -126,19 +105,17 @@ class ActivePart extends React.Component {
 }
 
 ActivePart.propTypes = {
+  config: React.PropTypes.object,
   id: React.PropTypes.string,
   imageFile: React.PropTypes.string,
-  config: React.PropTypes.object, 
-  activeColor: React.PropTypes.string,
-  draggable: React.PropTypes.bool
+  part: React.PropTypes.object
 };
 
 ActivePart.defaultProps = {
+  config: {},
   id: '',
   imageFile: '',
-  config: {}, 
-  activeColor: '',
-  draggable: false
+  part: {},
 };
 
 module.exports = ActivePart;

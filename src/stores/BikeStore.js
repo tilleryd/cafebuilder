@@ -2,15 +2,14 @@
 
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import PartConstants from '../constants/PartConstants';
-import PartsConfig from '../partsConfig';
-
+import BikeConfig from '../bikeConfig';
 import assign from 'object-assign';
 
 let EventEmitter = require('events').EventEmitter;
 
-let CHANGE_EVENT = 'change';
+let CHANGE_EVENT = 'changePart';
 
-let _parts = PartsConfig;
+let _parts = BikeConfig;
 
 /**
  * Update a Part item.
@@ -32,8 +31,21 @@ let BikeStore = assign({}, EventEmitter.prototype, {
     return _parts;
   },
 
-  emitChange() {
-    this.emit(CHANGE_EVENT);
+  /**
+   * Get a single part.
+   * @param {string} id - a part id
+   * @return {object}
+   */
+  getPart(id) {
+    return _parts[id];
+  },
+
+  /**
+   * Emit change event.
+   * @param {string} id - a part id
+   */
+  emitChange(id) {
+    this.emit(CHANGE_EVENT, id);
   },
 
   /**
@@ -53,15 +65,10 @@ let BikeStore = assign({}, EventEmitter.prototype, {
 
 // Register callback to handle all updates
 AppDispatcher.register(action => {
-  var text;
-
   switch(action.actionType) {
     case PartConstants.PART_CHANGE:
-      let partName = action.partName.trim();
-      if (partName !== '') {
-        //update(action.id, {partName: partName});
-        BikeStore.emitChange();
-      }
+      update(action.id, {name: action.name});
+      BikeStore.emitChange(action.id);
       break;
 
     default:

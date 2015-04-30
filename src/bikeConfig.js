@@ -3,10 +3,16 @@
 */
 
 module.exports = {
-  tank: {
-  	partType: 'original'
-  },
+	core: {
+    name: 'original',
+    color: ''
+	},
   seat: {
-  	partType: 'original'
+    name: 'original',
+    color: ''
+  },
+  tank: {
+    name: 'original',
+    color: ''
   }
 }

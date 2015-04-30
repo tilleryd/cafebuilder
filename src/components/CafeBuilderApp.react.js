@@ -17,7 +17,7 @@ class CafeBuilderApp extends React.Component {
   		<div>
   		  <Header activeColor={activeColor} />
   		  <Parts parts={partsConfig} />
-  		  <Bike parts={bikeConfig} activeColor={activeColor} />
+  		  <Bike parts={bikeConfig} />
   		</div>
   	);	
   }

@@ -6,12 +6,14 @@ import PartConstants from '../constants/PartConstants';
 let PartActions = {
 
   /**
-   * @param  {string} partName
+   * @param  {string} id
+   * @param  {string} name
    */
-  changePart(partName) {
+  changePart(id, name) {
     AppDispatcher.dispatch({
       actionType: PartConstants.PART_CHANGE,
-      partName: partName
+      id: id,
+      name: name
     });
   }
 
