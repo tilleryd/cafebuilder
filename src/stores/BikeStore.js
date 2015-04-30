@@ -1,9 +1,9 @@
 // BikeStore.js
 
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import PartConstants from '../constants/PartConstants';
-import BikeConfig from '../bikeConfig';
 import assign from 'object-assign';
+import BikeConfig from '../bikeConfig';
+import PartConstants from '../constants/PartConstants';
 
 let EventEmitter = require('events').EventEmitter;
 
@@ -12,9 +12,9 @@ let CHANGE_EVENT = 'changePart';
 let _parts = BikeConfig;
 
 /**
- * Update a Part item.
+ * Update a bike part item.
  * @param  {string} id
- * @param {object} updates An object literal containing only the data to be
+ * @param {object} updates - An object literal containing only the data to be
  *     updated.
  */
 function update(id, updates) {
@@ -33,7 +33,7 @@ let BikeStore = assign({}, EventEmitter.prototype, {
 
   /**
    * Get a single part.
-   * @param {string} id - a part id
+   * @param {string} id - A part id.
    * @return {object}
    */
   getPart(id) {
@@ -42,7 +42,7 @@ let BikeStore = assign({}, EventEmitter.prototype, {
 
   /**
    * Emit change event.
-   * @param {string} id - a part id
+   * @param {string} id - A part id.
    */
   emitChange(id) {
     this.emit(CHANGE_EVENT, id);

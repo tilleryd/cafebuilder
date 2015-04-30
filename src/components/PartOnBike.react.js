@@ -1,9 +1,9 @@
-// ActivePart.react.js
+// PartOnBike.react.js
 
-import jqueryUI from 'jquery-ui';
-import React from 'react';
 import BikeStore from 'stores/BikeStore';
+import jqueryUI from 'jquery-ui';
 import partsConfig from 'partsConfig';
+import React from 'react';
 
 function getPartState(id) {
   return {
@@ -11,7 +11,7 @@ function getPartState(id) {
   };
 }
 
-class ActivePart extends React.Component {
+class PartOnBike extends React.Component {
 
   constructor(props) {
     super(props);
@@ -30,7 +30,7 @@ class ActivePart extends React.Component {
     this.canvas = React.findDOMNode(this);
     this.canvasContext = this.canvas.getContext('2d');
     this._loadImage();
-    if(this.props.config.draggable) {
+    if (this.props.config.draggable) {
       $(this.canvas).draggable({opacity: 0.8});
     }
 
@@ -42,7 +42,7 @@ class ActivePart extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.part.name !== this.state.part.name) {
+    if (prevState.part.name !== this.state.part.name) {
       this.props.config = partsConfig[this.props.id].parts[this.state.part.name];
       this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.canvas.width = this.props.config.w;
@@ -104,18 +104,18 @@ class ActivePart extends React.Component {
 
 }
 
-ActivePart.propTypes = {
+PartOnBike.propTypes = {
   config: React.PropTypes.object,
   id: React.PropTypes.string,
   imageFile: React.PropTypes.string,
   part: React.PropTypes.object
 };
 
-ActivePart.defaultProps = {
+PartOnBike.defaultProps = {
   config: {},
   id: '',
   imageFile: '',
   part: {},
 };
 
-module.exports = ActivePart;
+module.exports = PartOnBike;

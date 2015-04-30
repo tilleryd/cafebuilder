@@ -1,5 +1,5 @@
 /*
-  mock JSON for persistent bike parts
+  Mock JSON for persistent bike parts.
 */
 
 module.exports = {

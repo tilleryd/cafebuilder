@@ -1,7 +1,7 @@
 // Parts.react.js
 
-import React from 'react';
 import Part from './Part.react';
+import React from 'react';
 
 class Parts extends React.Component {
 
@@ -18,7 +18,7 @@ class Parts extends React.Component {
       <div id="parts">
         {
           Object.keys(this.state.parts).map(key => {
-            if(key === 'core') { return }
+            if (key === 'core') { return }
             return (
               <div>
                 {key}

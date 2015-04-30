@@ -1,7 +1,7 @@
-/* app.js */
+// app.js
 
-import React from 'react';
 import CafeBuilderApp from 'components/CafeBuilderApp.react';
+import React from 'react';
 
 React.render(
   <CafeBuilderApp />,

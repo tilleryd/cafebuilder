@@ -1,8 +1,8 @@
 // Bike.react.js
 
-import React from 'react';
-import ActivePart from './ActivePart.react';
 import partsConfig from 'partsConfig';
+import PartOnBike from './PartOnBike.react';
+import React from 'react';
 
 class Bike extends React.Component {
 
@@ -20,7 +20,7 @@ class Bike extends React.Component {
   		  {
   		  	Object.keys(this.props.parts).map(key => {
             let part = this.props.parts[key];
-		  		  return <ActivePart
+		  		  return <PartOnBike
                       config={partsConfig[key].parts[part.name]}
                       id={key}
                       imageFile={partsConfig[key].file}
