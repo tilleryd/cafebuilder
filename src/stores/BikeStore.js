@@ -27,7 +27,7 @@ let BikeStore = assign({}, EventEmitter.prototype, {
    * Get the entire collection of parts.
    * @return {object}
    */
-  getAll() {
+  getAllParts() {
     return _parts;
   },
 

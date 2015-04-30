@@ -1,8 +1,13 @@
 // Bike.react.js
 
+import BikeStore from '../stores/BikeStore';
 import partsConfig from 'partsConfig';
 import PartOnBike from './PartOnBike.react';
 import React from 'react';
+
+function getBikeState() {
+  return BikeStore.getAllParts();
+}
 
 class Bike extends React.Component {
 
@@ -10,7 +15,7 @@ class Bike extends React.Component {
     super(props);
     
     this.state = {
-      parts: props.parts
+      parts: getBikeState()
     }
   }
 
@@ -18,8 +23,8 @@ class Bike extends React.Component {
   	return (
   		<div className="bike">
   		  {
-  		  	Object.keys(this.props.parts).map(key => {
-            let part = this.props.parts[key];
+  		  	Object.keys(this.state.parts).map(key => {
+            let part = this.state.parts[key];
 		  		  return <PartOnBike
                       config={partsConfig[key].parts[part.name]}
                       id={key}

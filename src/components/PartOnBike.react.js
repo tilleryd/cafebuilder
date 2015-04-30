@@ -65,11 +65,6 @@ class PartOnBike extends React.Component {
     */
   }
 
-  _onChangePart(id) {
-    if (id !== this.props.id) { return }
-    this.setState(getPartState(id));
-  }
-
   _loadImage() {
     this.image = new Image();
     this.image.src = `/images/${this.props.imageFile}`;
@@ -91,13 +86,18 @@ class PartOnBike extends React.Component {
     return classes;
   }
 
+  _onChangePart(id) {
+    if (id !== this.props.id) { return }
+    this.setState(getPartState(id));
+  }
+
   render() {
     return (
       <canvas
-        id={this.props.id}
-        width={this.props.config.w}
+        className={this._getCSSClasses()}
         height={this.props.config.h}
-        className={this._getCSSClasses()}>
+        id={this.props.id}
+        width={this.props.config.w}>
       </canvas>
     );
   }

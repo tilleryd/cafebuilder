@@ -1,5 +1,6 @@
 // Parts.react.js
 
+import partsConfig from '../partsConfig';
 import Part from './Part.react';
 import React from 'react';
 
@@ -9,7 +10,7 @@ class Parts extends React.Component {
     super(props);
     
     this.state = {
-      parts: props.parts
+      parts: partsConfig
     }
   }
 
@@ -40,11 +41,11 @@ class Parts extends React.Component {
 }
 
 Parts.propTypes = {
-  parts: React.PropTypes.array
+  parts: React.PropTypes.object
 };
 
 Parts.defaultProps = {
-  parts: []
+  parts: {}
 };
 
 module.exports = Parts;

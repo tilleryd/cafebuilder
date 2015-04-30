@@ -17,6 +17,6 @@ let PartActions = {
     });
   }
 
- }
+}
 
- module.exports = PartActions;
+module.exports = PartActions;

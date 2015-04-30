@@ -5,13 +5,15 @@ require('spectrum')($);
 
 import React from 'react';
 
+let activeColor = '#666666';
+
 class Header extends React.Component {
 
   constructor(props) {
     super(props);
     
     this.state = {
-      activeColor: props.activeColor
+      activeColor: activeColor
     }
   }
 
