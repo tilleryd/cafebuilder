@@ -1,4 +1,4 @@
-// ActivePart.js
+// ActivePart.react.js
 
 import jqueryUI from 'jquery-ui';
 import React from 'react';

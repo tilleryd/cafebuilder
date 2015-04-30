@@ -1,4 +1,4 @@
-// Part.js
+// Part.react.js
 
 import React from 'react';
 import PartActions from 'actions/PartActions';

@@ -5,8 +5,8 @@ import React from 'react';
 import partsConfig from '../partsConfig';
 import bikeConfig from '../bikeConfig';
 import Header from './Header.react';
-import Parts from '../Parts';
-import Bike from '../Bike';
+import Parts from './Parts.react';
+import Bike from './Bike.react';
 
 class CafeBuilderApp extends React.Component {
 

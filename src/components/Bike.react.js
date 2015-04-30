@@ -1,7 +1,7 @@
-// Bike.js
+// Bike.react.js
 
 import React from 'react';
-import ActivePart from 'ActivePart';
+import ActivePart from './ActivePart.react';
 import partsConfig from 'partsConfig';
 
 class Bike extends React.Component {
