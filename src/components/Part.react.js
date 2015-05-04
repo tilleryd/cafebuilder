@@ -1,6 +1,6 @@
 // Part.react.js
 
-import PartActions from 'actions/PartActions';
+import PartActions from '../actions/PartActions';
 import React from 'react';
 
 class Part extends React.Component {

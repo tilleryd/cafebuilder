@@ -7,7 +7,7 @@ import PartConstants from '../constants/PartConstants';
 
 let EventEmitter = require('events').EventEmitter;
 
-let CHANGE_EVENT = 'changePart';
+let CHANGE_EVENT = 'change';
 
 let _parts = BikeConfig;
 

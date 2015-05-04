@@ -34,28 +34,6 @@ h1.title {
   .colorpicker {
     float: left;
   }
-
-  #parts {
-    float: left;
-    margin-top: 10px;
-
-    > div {
-      float: left;
-      margin-right: 10px; 
-    }
-
-    ul {
-      margin: 0;
-      padding: 10px;
-      border: 1px solid #999;
-      width: 100px;
-
-      li {
-        list-style: none;
-      }
-    }
-  }
-
 }
 
 .bike {
@@ -64,7 +42,11 @@ h1.title {
   margin: 100px auto;
 }
 
-canvas {
+.partOnBike {
+  position: relative;
+}
+
+.partOnBike-wrapper {
   &:not(#core) {
     position: absolute !important;
     z-index: 1;
@@ -92,6 +74,48 @@ canvas {
       top: 36px;
       left: 376px;
     }
+  }
+}
+
+.parts-wrapper {
+  height: 100%;
+  width: 100%;
+  display: none;
+
+  &.toggle {
+    display: block;
+  }
+
+  &.visible {
+    ul.parts {
+      display: block;
+    }
+  }
+
+  .toggle {
+    .overlay();
+    height: 20px;
+    width: 20px;
+    background: #fff;
+    z-index: 2;
+    cursor: pointer;
+
+    div {
+      margin-left: 6px;
+    }
+  }
+}
+
+ul.parts {
+  .overlay();
+  display: none;
+  margin: -80px 0 0;
+  padding: 20px;
+  background: #e6e6e6;
+  z-index: 3;
+
+  li {
+    list-style: none;
   }
 }
 

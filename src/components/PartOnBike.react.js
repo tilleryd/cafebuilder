@@ -1,8 +1,9 @@
 // PartOnBike.react.js
 
-import BikeStore from 'stores/BikeStore';
+import BikeStore from '../stores/BikeStore';
 import jqueryUI from 'jquery-ui';
-import partsConfig from 'partsConfig';
+import partsConfig from '../partsConfig';
+import Parts from './Parts.react';
 import React from 'react';
 
 function getPartState(id) {
@@ -24,21 +25,25 @@ class PartOnBike extends React.Component {
     this.canvasContext = null;
     this.image = null;
     this.imageData = null;
+
+    this._onChangePart = this._onChangePart.bind(this);
   }
 
   componentDidMount() {
-    this.canvas = React.findDOMNode(this);
+    let domNode = React.findDOMNode(this);
+    this.canvas = domNode.getElementsByTagName('canvas')[0];
     this.canvasContext = this.canvas.getContext('2d');
     this._loadImage();
     if (this.props.config.draggable) {
-      $(this.canvas).draggable({opacity: 0.8});
+      // jqueryUI drag
+      $(domNode).draggable({opacity: 0.8});
     }
 
-    BikeStore.addChangeListener(this._onChangePart.bind(this));
+    BikeStore.addChangeListener(this._onChangePart);
   }
 
   componentWillUnmount() {
-    BikeStore.removeChangeListener(this._onChangePart.bind(this));
+    BikeStore.removeChangeListener(this._onChangePart);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -79,11 +84,11 @@ class PartOnBike extends React.Component {
   }
 
   _getCSSClasses() {
-    let classes = this.state.part.name;
+    let classes = ['partOnBike-wrapper', this.state.part.name];
     if (this.props.config.draggable) {
-      classes += ' draggable';
+      classes.push('draggable');
     }
-    return classes;
+    return classes.join(' ');
   }
 
   _onChangePart(id) {
@@ -93,12 +98,20 @@ class PartOnBike extends React.Component {
 
   render() {
     return (
-      <canvas
-        className={this._getCSSClasses()}
-        height={this.props.config.h}
+      <div
         id={this.props.id}
-        width={this.props.config.w}>
-      </canvas>
+        className={this._getCSSClasses()}>
+        <div className="partOnBike">
+          <Parts
+            id={this.props.id}
+            parts={partsConfig[this.props.id].parts}
+            hoverable={this.props.config.hoverable} />
+          <canvas
+            height={this.props.config.h}
+            width={this.props.config.w}>
+          </canvas>
+        </div>
+      </div>
     );
   }
 

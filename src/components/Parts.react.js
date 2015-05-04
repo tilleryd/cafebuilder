@@ -1,7 +1,8 @@
 // Parts.react.js
 
-import partsConfig from '../partsConfig';
 import Part from './Part.react';
+import PartConstants from '../constants/PartConstants';
+import PartsEmitter from '../emitters/PartsEmitter';
 import React from 'react';
 
 class Parts extends React.Component {
@@ -9,31 +10,70 @@ class Parts extends React.Component {
   constructor(props) {
     super(props);
     
+    this.baseCSSClass = 'parts-wrapper';
+
     this.state = {
-      parts: partsConfig
+      cssClasses: this.baseCSSClass,
+      id: props.id,
+      hoverable: props.hoverable,
+      parts: props.parts
     }
+
+    this._onMouseEnter = this._onMouseEnter.bind(this);
+    this._onMouseLeave = this._onMouseLeave.bind(this);
+    this._onMouseOverToggle = this._onMouseOverToggle.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.hoverable) {
+      $(`#${this.props.id}`)
+        .on('mouseenter', (e) => {
+          this._onMouseEnter();
+        })
+        .on('mouseleave', (e) => {
+          this._onMouseLeave();
+        });
+    }
+  }
+
+  componentWillUnmount() {
+    $(`#${this.props.id}`)
+      .off('mouseenter', this._onMouseEnter)
+      .off('mouseleave', this._onMouseLeave);
+  }
+
+  _onMouseEnter() {
+    this.setState({cssClasses: this.baseCSSClass + ' toggle'});
+  }
+
+  _onMouseLeave() {
+    this.setState({cssClasses: this.baseCSSClass});
+  }
+
+  _onMouseOverToggle() {
+    this.setState({cssClasses: this.baseCSSClass + ' toggle visible'});
   }
 
   render() {
     return (
-      <div id="parts">
-        {
-          Object.keys(this.state.parts).map(key => {
-            if (key === 'core') { return }
-            return (
-              <div>
-                {key}
-                <ul className="parts">
-                  {
-                    Object.keys(this.state.parts[key].parts).map(partKey => {
-                      return <Part id={key} name={partKey} />
-                    })
-                  }
-                </ul>
-              </div>
-            )
-          })
-        }
+      <div 
+        className={this.state.cssClasses}
+        onMouseEnter={this._onMouseEnter}
+        onMouseLeave={this._onMouseLeave}>
+        <ul className="parts">
+          {
+            Object.keys(this.state.parts).map(partKey => {
+              return <Part 
+                       id={this.props.id} 
+                       name={partKey} />
+            })
+          }
+        </ul>
+        <div 
+          className="toggle"
+          onMouseOver={this._onMouseOverToggle}>
+          <div>+</div>
+        </div>
       </div>
     );
   }
@@ -41,10 +81,16 @@ class Parts extends React.Component {
 }
 
 Parts.propTypes = {
+  cssClasses: React.PropTypes.string,
+  id: React.PropTypes.string,
+  hoverable: React.PropTypes.bool,
   parts: React.PropTypes.object
 };
 
 Parts.defaultProps = {
+  cssClasses: '',
+  id: '',
+  hoverable: false,
   parts: {}
 };
 

@@ -6,8 +6,8 @@ import PartConstants from '../constants/PartConstants';
 let PartActions = {
 
   /**
-   * @param  {string} id
-   * @param  {string} name
+   * @param {string} id
+   * @param {string} name
    */
   changePart(id, name) {
     AppDispatcher.dispatch({

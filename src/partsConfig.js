@@ -16,7 +16,8 @@ module.exports = {
         y: 0,
         h: 95,
         w: 300,
-        draggable: true
+        draggable: true,
+        hoverable: true
       },
       supersport: {
         x: -305,
@@ -24,7 +25,8 @@ module.exports = {
         h: 95,
         w: 240,
         paintable: true,
-        draggable: true
+        draggable: true,
+        hoverable: true
       }
     }
   },
@@ -37,7 +39,8 @@ module.exports = {
       	h: 110,
       	w: 246,
       	paintable: true,
-        draggable: true
+        draggable: true,
+        hoverable: true
       },
       supersport: {
       	x: -246,
@@ -45,7 +48,8 @@ module.exports = {
       	h: 95,
       	w: 278,
       	paintable: true,
-        draggable: true
+        draggable: true,
+        hoverable: true
       }
     }
   }
