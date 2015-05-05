@@ -7,8 +7,9 @@ import PartConstants from '../constants/PartConstants';
 
 let EventEmitter = require('events').EventEmitter;
 
-let PART_CHANGE_EVENT = 'partChange';
 let COLOR_CHANGE_EVENT = 'colorChange';
+let PART_CHANGE_EVENT = 'partChange';
+let PRESET_CHANGE_EVENT = 'presetChange';
 
 let _parts = BikeConfig;
 
@@ -64,8 +65,16 @@ let BikeStore = assign({}, EventEmitter.prototype, {
    * Emit color change event.
    * @param {string} color - A color string.
    */
-  emitColorChange(id) {
-    this.emit(COLOR_CHANGE_EVENT, id);
+  emitColorChange() {
+    this.emit(COLOR_CHANGE_EVENT);
+  },
+
+  /**
+   * Emit color change event.
+   * @param {string} name - A preset name.
+   */
+  emitPresetChange() {
+    this.emit(PRESET_CHANGE_EVENT);
   },
 
   /**
@@ -80,6 +89,10 @@ let BikeStore = assign({}, EventEmitter.prototype, {
 
       case PartConstants.COLOR_CHANGE:
         this.on(COLOR_CHANGE_EVENT, callback);
+        break;      
+
+      case PartConstants.PRESET_CHANGE:
+        this.on(PRESET_CHANGE_EVENT, callback);
         break;
 
       default:
@@ -102,6 +115,10 @@ let BikeStore = assign({}, EventEmitter.prototype, {
         this.removeListener(COLOR_CHANGE_EVENT, callback);
         break;
 
+      case PartConstants.PRESET_CHANGE:
+        this.removeListener(PRESET_CHANGE_EVENT, callback);
+        break;
+
       default:
         // no op
     }
@@ -119,7 +136,12 @@ AppDispatcher.register(action => {
 
     case PartConstants.COLOR_CHANGE:
       updateAll({color: action.color});
-      BikeStore.emitColorChange(action.actionType);
+      BikeStore.emitColorChange();
+      break;
+
+    case PartConstants.PRESET_CHANGE:
+      updateAll({name: action.name});
+      BikeStore.emitPresetChange();
       break;
 
     default:

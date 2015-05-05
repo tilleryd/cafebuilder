@@ -6,5 +6,6 @@ module.exports = keyMirror({
   COLOR_CHANGE: null,
   PART_CHANGE: null,
   PARTS_HIDE: null,
-  PARTS_SHOW: null
+  PARTS_SHOW: null,
+  PRESET_CHANGE: null
 });

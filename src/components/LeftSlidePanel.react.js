@@ -1,6 +1,7 @@
 // LeftSlidePanel.react.js
 
 import Button from '../components/ui/Button.react';
+import PartActions from '../actions/PartActions';
 import React from 'react';
 import SlidePanel from '../components/ui/SlidePanel.react';
 
@@ -8,6 +9,12 @@ class LeftSlidePanel extends React.Component {
 
   constructor(props) {
   	super(props);
+
+    this._onButtonClick = this._onButtonClick.bind(this);
+  }
+
+  _onButtonClick(e) {
+    PartActions.changePreset(e.target.textContent.toLowerCase())
   }
 
   render() {
@@ -16,8 +23,12 @@ class LeftSlidePanel extends React.Component {
   		  <SlidePanel 
           position="left"
           title="Presets">
-          <Button text="Original" />
-  		    <Button text="Supersport" />
+          <Button 
+            clickHandler={this._onButtonClick}
+            text="Original" />
+  		    <Button
+            clickHandler={this._onButtonClick}
+            text="Supersport" />
   		  </SlidePanel>
   		</div>
   	);	

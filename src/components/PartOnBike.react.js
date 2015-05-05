@@ -29,6 +29,7 @@ class PartOnBike extends React.Component {
 
     this._onChangePart = this._onChangePart.bind(this);
     this._onChangeColor = this._onChangeColor.bind(this);
+    this._onPresetChange = this._onPresetChange.bind(this);
   }
 
   componentDidMount() {
@@ -43,13 +44,15 @@ class PartOnBike extends React.Component {
 
     BikeStore
       .addChangeListener(PartConstants.PART_CHANGE, this._onChangePart)
-      .addChangeListener(PartConstants.COLOR_CHANGE, this._onChangeColor);
+      .addChangeListener(PartConstants.COLOR_CHANGE, this._onChangeColor)
+      .addChangeListener(PartConstants.PRESET_CHANGE, this._onPresetChange);
   }
 
   componentWillUnmount() {
     BikeStore
       .removeChangeListener(PartConstants.PART_CHANGE, this._onChangePart)
-      .removeChangeListener(PartConstants.COLOR_CHANGE, this._onChangeColor);
+      .removeChangeListener(PartConstants.COLOR_CHANGE, this._onChangeColor)
+      .removeChangeListener(PartConstants.PRESET_CHANGE, this._onPresetChange);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -81,7 +84,6 @@ class PartOnBike extends React.Component {
 
   _paintPart() {
     if(this.props.config['paintable']) {
-      console.log(this.state.part.color);
       // first reset to original image
       this.canvasContext.putImageData(this.imageData, 0, 0);
 
@@ -107,6 +109,10 @@ class PartOnBike extends React.Component {
   }
 
   _onChangeColor() {
+    this.setState(getPartState(this.props.id));
+  }
+
+  _onPresetChange() {
     this.setState(getPartState(this.props.id));
   }
 

@@ -19,7 +19,7 @@ class Button extends React.Component {
 
   _onClick(e) {
     e.preventDefault();
-    this.props.clickHandler();
+    this.props.clickHandler(e);
   }
 
   render() {
