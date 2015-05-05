@@ -115,7 +115,7 @@ ul.parts {
 
 .slidePanel {
   .overlay(0);
-  width: 200px;
+  width: 210px;
   height: 100%;
   overflow-x: hidden;
 
@@ -124,28 +124,33 @@ ul.parts {
     height: 40px;
     width: 20px;
     margin-top: -20px;
-    background: #ddd;
+    background: #000;
     cursor: pointer;
 
     &:hover {
-      background: #fff;
+      background: #333;
     }
     i {
-      margin: 12px 0 0 4px;
+      margin: 12px 0 0 5px;
+      color: #fff;
     }
   }
 
   .panel {
     .overlay(auto, 0);
-    width: 180px;
+    width: 190px;
     height: 100%;
-    background: #999;
+    background: #000;
     display: inline-block;
   }
 
   &.left {
-    left: -180px;
+    left: -190px;
     .transition(left, ease, 0.2s);
+
+    .btn {
+      .border-radius(0, 5px, 5px, 0);
+    }
   }
 
   &.left.visible {
@@ -153,8 +158,12 @@ ul.parts {
   }
 
   &.right {
-    right: -180px;
+    right: -190px;
     .transition(right, ease, 0.2s);
+
+    .btn {
+      .border-radius(5px, 0, 0, 5px);
+    }
   }
 
   &.right.visible {

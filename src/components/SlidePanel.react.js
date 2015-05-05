@@ -25,6 +25,12 @@ class SlidePanel extends React.Component {
     return cssClasses.join(' ');
   }
 
+  _getIconClass() {
+  	let baseClass = 'fa fa-lg ';
+  	let iconClass = this.state.visible ? 'fa-angle-double-right' : 'fa-angle-double-left';
+  	return baseClass + iconClass;
+  }
+
   _onBtnClick() {
   	this.setState({visible: !this.state.visible});
   }
@@ -35,7 +41,7 @@ class SlidePanel extends React.Component {
         <div 
           className="btn"
           onClick={this._onBtnClick}>
-          <i className="fa fa-angle-double-left fa-lg"></i>
+          <i className={this._getIconClass()}></i>
          </div>
         <div className="panel">
           {
