@@ -9,7 +9,8 @@ class SlidePanel extends React.Component {
     
     this.state = {
       components: props.components,
-      position: props.position
+      position: props.position,
+      title: props.title
     }
 
     this._onBtnClick = this._onBtnClick.bind(this);
@@ -27,7 +28,12 @@ class SlidePanel extends React.Component {
 
   _getIconClass() {
   	let baseClass = 'fa fa-lg ';
-  	let iconClass = this.state.visible ? 'fa-angle-double-right' : 'fa-angle-double-left';
+    let iconClass = '';
+    if (this.state.position === 'left') {
+      iconClass = this.state.visible ? 'fa-angle-double-left': 'fa-angle-double-right';
+    } else {
+      iconClass = this.state.visible ? 'fa-angle-double-right': 'fa-angle-double-left';
+    }
   	return baseClass + iconClass;
   }
 
@@ -44,11 +50,10 @@ class SlidePanel extends React.Component {
           <i className={this._getIconClass()} />
          </div>
         <div className="panel">
-          {
-            this.state.components.map(component => {
-              return React.createElement(component);
-            })
-          }
+          <div className="header">
+            <h2>{this.props.title}</h2>
+          </div>
+          {this.props.children}
         </div>
       </div>
     );
@@ -59,12 +64,14 @@ class SlidePanel extends React.Component {
 SlidePanel.propTypes = {
   components: React.PropTypes.array,
   position: React.PropTypes.string,
+  title: React.PropTypes.string,
   visible: React.PropTypes.bool
 };
 
 SlidePanel.defaultProps = {
   components: [],
   position: '',
+  title: '',
   visible: false
 };
 

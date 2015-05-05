@@ -5,7 +5,7 @@
 module.exports = {
 	core: {
     name: 'original',
-    color: ''
+    color: '#2713D5'
 	},
   seat: {
     name: 'original',
@@ -13,7 +13,7 @@ module.exports = {
   },
   tank: {
     name: 'original',
-    color: ''
+    color: '#2713D5'
   },
   exhaust: {
     name: 'original',

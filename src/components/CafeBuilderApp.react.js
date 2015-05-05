@@ -3,6 +3,7 @@
 import Bike from './Bike.react';
 import Button from '../components/ui/Button.react';
 import Header from './Header.react';
+import LeftSlidePanel from '../components/LeftSlidePanel.react';
 import React from 'react';
 import RightSlidePanel from '../components/RightSlidePanel.react';
 
@@ -13,6 +14,7 @@ class CafeBuilderApp extends React.Component {
   		<div>
   		  <Header />
   		  <Bike />
+  		  <LeftSlidePanel />
   		  <RightSlidePanel />
   		</div>
   	);	

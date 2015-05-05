@@ -8,7 +8,10 @@ class Button extends React.Component {
     super(props);
     
     this.state = {
-      id: props.id
+      clickHandler: props.clickHandler,
+      cssClasses: props.cssClasses,
+      id: props.id,
+      text: props.text
     }
 
     this._onClick = this._onClick.bind(this);
@@ -16,22 +19,31 @@ class Button extends React.Component {
 
   _onClick(e) {
     e.preventDefault();
+    this.props.clickHandler();
   }
 
   render() {
     return (
-    	<button onClick={this._onClick}></button>
+    	<button className={this.state.cssClasses} onClick={this._onClick}>
+        {this.state.text}
+      </button>
     );
   }
 
 }
 
 Button.propTypes = {
-  id: React.PropTypes.string
+  clickHandler: React.PropTypes.func,
+  cssClasses: React.PropTypes.string,
+  id: React.PropTypes.string,
+  text: React.PropTypes.string
 };
 
 Button.defaultProps = {
-  id: ''
+  clickHandler: null,
+  cssClasses: '',
+  id: '',
+  text: ''
 };
 
 module.exports = Button;

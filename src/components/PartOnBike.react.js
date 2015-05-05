@@ -62,9 +62,26 @@ class PartOnBike extends React.Component {
     this.canvas.height = this.props.config.h;
     this.canvasContext.drawImage(this.image, this.props.config.x, this.props.config.y);
     this._setImageData();
+    this._paintPart();
+  }
 
-    // add paint color
+  _loadImage() {
+    this.image = new Image();
+    this.image.src = `/images/${this.props.imageFile}`;
+    this.image.onload = () => {
+      this.canvasContext.drawImage(this.image, 0, 0);
+      this._setImageData();
+      this._paintPart();
+    }
+  }
+
+  _setImageData() {
+    this.imageData = this.canvasContext.getImageData(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  _paintPart() {
     if(this.props.config['paintable']) {
+      console.log(this.state.part.color);
       // first reset to original image
       this.canvasContext.putImageData(this.imageData, 0, 0);
 
@@ -74,20 +91,6 @@ class PartOnBike extends React.Component {
       this.canvasContext.fillStyle = this.state.part.color;
       this.canvasContext.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
-    
-  }
-
-  _loadImage() {
-    this.image = new Image();
-    this.image.src = `/images/${this.props.imageFile}`;
-    this.image.onload = () => {
-      this.canvasContext.drawImage(this.image, 0, 0);
-      this._setImageData();
-    }
-  }
-
-  _setImageData() {
-    this.imageData = this.canvasContext.getImageData(0, 0, this.canvas.width, this.canvas.height);
   }
 
   _getCSSClasses() {
