@@ -39,3 +39,12 @@
   -moz-border-radius: @topLeft @topRight @bottomRight @bottomLeft;
   border-radius: @topLeft @topRight @bottomRight @bottomLeft;
 }
+
+.circle(@size, @color) {
+  height: @size;
+  width: @size;
+  background: @color;
+  -moz-border-radius: @size/2;
+  -webkit-border-radius: @size/2;
+  border-radius: @size/2;
+}

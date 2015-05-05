@@ -52,5 +52,28 @@ module.exports = {
         hoverable: true
       }
     }
+  },
+  exhaust: {
+    file: 'exhausts.png',
+    parts: {
+      original: {
+        x: 0,
+        y: 0,
+        h: 179,
+        w: 557,
+        paintable: false,
+        draggable: true,
+        hoverable: true
+      },
+      supersport: {
+        x: -557,
+        y: 0,
+        h: 179,
+        w: 440,
+        paintable: false,
+        draggable: true,
+        hoverable: true
+      }
+    }
   }
 }

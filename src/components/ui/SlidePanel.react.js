@@ -41,7 +41,7 @@ class SlidePanel extends React.Component {
         <div 
           className="btn"
           onClick={this._onBtnClick}>
-          <i className={this._getIconClass()}></i>
+          <i className={this._getIconClass()} />
          </div>
         <div className="panel">
           {

@@ -53,7 +53,7 @@ class PartOnBike extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState === this.state) { return; } 
+    if (prevState === this.state || this.props.id === 'core') { return; } 
 
     // draw the part image
     this.props.config = partsConfig[this.props.id].parts[this.state.part.name];
@@ -111,7 +111,9 @@ class PartOnBike extends React.Component {
     return (
       <div
         id={this.props.id}
-        className={this._getCSSClasses()}>
+        className={this._getCSSClasses()}
+        height={this.props.config.h + 'px'}
+        width={this.props.config.w + 'px'}>        
         <div className="partOnBike">
           <Parts
             id={this.props.id}

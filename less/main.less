@@ -69,9 +69,22 @@ h1.title {
       left: 376px;
     }
   }
+
+  &#exhaust {
+    &.original {
+      top: 191px;
+      left: 62px;
+    }
+
+    &.supersport {
+      top: 203px;
+      left: 205px;
+    }
+  }
 }
 
 .parts-wrapper {
+  .overlay();
   height: 100%;
   width: 100%;
   display: none;
@@ -88,28 +101,35 @@ h1.title {
 
   .toggle {
     .overlay();
-    height: 20px;
-    width: 20px;
-    background: #fff;
+    height: 25px;
+    width: 25px;
     z-index: 2;
     cursor: pointer;
+    .circle(25px, #000);
 
-    div {
-      margin-left: 6px;
+    i {
+      color: #fff;
+      margin: 3px 0 0 5px;
     }
   }
-}
 
-ul.parts {
-  .overlay();
-  display: none;
-  margin: -80px 0 0;
-  padding: 20px;
-  background: #e6e6e6;
-  z-index: 3;
+  ul.parts {
+    .overlay();
+    display: none;
+    margin: -80px 0 0;
+    padding: 20px;
+    background: #e6e6e6;
+    z-index: 3;
 
-  li {
-    list-style: none;
+    li {
+      list-style: none;
+      button {
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+    }
   }
 }
 
@@ -173,20 +193,6 @@ ul.parts {
 
 /*
 .seat {
-  .original {
-    background-position: 0 -450px;  
-    height: 93px;
-    width: 310px;
-    .overlay(51px, auto, auto, 115px);
-  }
-
-  .supersport {
-    background-position: 0 -95px;
-    height: 49px;
-    width: 242px;
-    .overlay(88px, auto, auto, 148px);
-  }
-
   .racey {
     background-position: -241px -95px;
     height: 48px;

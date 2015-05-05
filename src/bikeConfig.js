@@ -14,5 +14,9 @@ module.exports = {
   tank: {
     name: 'original',
     color: ''
+  },
+  exhaust: {
+    name: 'original',
+    color: '',
   }
 }

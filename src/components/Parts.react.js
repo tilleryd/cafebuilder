@@ -64,7 +64,7 @@ class Parts extends React.Component {
           {
             Object.keys(this.state.parts).map(partKey => {
               return <Part 
-                       id={this.props.id} 
+                       id={this.props.id}
                        name={partKey} />
             })
           }
@@ -72,7 +72,7 @@ class Parts extends React.Component {
         <div 
           className="toggle"
           onMouseOver={this._onMouseOverToggle}>
-          <div>+</div>
+          <i className="fa fa-wrench"/>
         </div>
       </div>
     );
