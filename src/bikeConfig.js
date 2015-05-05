@@ -15,6 +15,10 @@ module.exports = {
     name: 'original',
     color: '#2713D5'
   },
+  tankBadges: {
+    name: 'original',
+    color: ''
+  },
   exhaust: {
     name: 'original',
     color: '',

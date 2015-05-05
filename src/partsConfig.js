@@ -53,6 +53,29 @@ module.exports = {
       }
     }
   },
+  tankBadges: {
+    file: 'logos.png',
+    parts: {
+      original: {
+        x: 0,
+        y: 0,
+        h: 10,
+        w: 88,
+        paintable: false,
+        draggable: true,
+        hoverable: true
+      },
+      supersport: {
+        x: -90,
+        y: 0,
+        h: 30,
+        w: 90,
+        paintable: false,
+        draggable: true,
+        hoverable: true
+      }
+    }
+  },
   exhaust: {
     file: 'exhausts.png',
     parts: {
