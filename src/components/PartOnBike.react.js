@@ -3,6 +3,7 @@
 import BikeStore from '../stores/BikeStore';
 import jqueryUI from 'jquery-ui';
 import partsConfig from '../partsConfig';
+import PartConstants from '../constants/PartConstants';
 import Parts from './Parts.react';
 import React from 'react';
 
@@ -27,6 +28,7 @@ class PartOnBike extends React.Component {
     this.imageData = null;
 
     this._onChangePart = this._onChangePart.bind(this);
+    this._onChangeColor = this._onChangeColor.bind(this);
   }
 
   componentDidMount() {
@@ -39,24 +41,29 @@ class PartOnBike extends React.Component {
       $(domNode).draggable({opacity: 0.8});
     }
 
-    BikeStore.addChangeListener(this._onChangePart);
+    BikeStore
+      .addChangeListener(PartConstants.PART_CHANGE, this._onChangePart)
+      .addChangeListener(PartConstants.COLOR_CHANGE, this._onChangeColor);
   }
 
   componentWillUnmount() {
-    BikeStore.removeChangeListener(this._onChangePart);
+    BikeStore
+      .removeChangeListener(PartConstants.PART_CHANGE, this._onChangePart)
+      .removeChangeListener(PartConstants.COLOR_CHANGE, this._onChangeColor);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.part.name !== this.state.part.name) {
-      this.props.config = partsConfig[this.props.id].parts[this.state.part.name];
-      this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      this.canvas.width = this.props.config.w;
-      this.canvas.height = this.props.config.h;
-      this.canvasContext.drawImage(this.image, this.props.config.x, this.props.config.y);
-      this._setImageData();
-    }
+    if (prevState === this.state) { return; } 
 
-    /*
+    // draw the part image
+    this.props.config = partsConfig[this.props.id].parts[this.state.part.name];
+    this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.canvas.width = this.props.config.w;
+    this.canvas.height = this.props.config.h;
+    this.canvasContext.drawImage(this.image, this.props.config.x, this.props.config.y);
+    this._setImageData();
+
+    // add paint color
     if(this.props.config['paintable']) {
       // first reset to original image
       this.canvasContext.putImageData(this.imageData, 0, 0);
@@ -67,7 +74,7 @@ class PartOnBike extends React.Component {
       this.canvasContext.fillStyle = this.state.part.color;
       this.canvasContext.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
-    */
+    
   }
 
   _loadImage() {
@@ -94,6 +101,10 @@ class PartOnBike extends React.Component {
   _onChangePart(id) {
     if (id !== this.props.id) { return }
     this.setState(getPartState(id));
+  }
+
+  _onChangeColor() {
+    this.setState(getPartState(this.props.id));
   }
 
   render() {

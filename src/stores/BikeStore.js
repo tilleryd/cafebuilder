@@ -7,7 +7,8 @@ import PartConstants from '../constants/PartConstants';
 
 let EventEmitter = require('events').EventEmitter;
 
-let CHANGE_EVENT = 'change';
+let PART_CHANGE_EVENT = 'partChange';
+let COLOR_CHANGE_EVENT = 'colorChange';
 
 let _parts = BikeConfig;
 
@@ -19,6 +20,17 @@ let _parts = BikeConfig;
  */
 function update(id, updates) {
   _parts[id] = assign({}, _parts[id], updates);
+}
+
+/**
+ * Update all bike part items.
+ * @param {object} updates - An object literal containing only the data to be
+ *     updated.
+ */
+function updateAll(updates) {
+  Object.keys(_parts).map(key => {
+    _parts[key] = assign({}, _parts[key], updates);
+  });
 }
 
 let BikeStore = assign({}, EventEmitter.prototype, {
@@ -41,25 +53,59 @@ let BikeStore = assign({}, EventEmitter.prototype, {
   },
 
   /**
-   * Emit change event.
+   * Emit part change event.
    * @param {string} id - A part id.
    */
-  emitChange(id) {
-    this.emit(CHANGE_EVENT, id);
+  emitPartChange(id) {
+    this.emit(PART_CHANGE_EVENT, id);
   },
 
   /**
-   * @param {function} callback
+   * Emit color change event.
+   * @param {string} color - A color string.
    */
-  addChangeListener(callback) {
-    this.on(CHANGE_EVENT, callback);
+  emitColorChange(id) {
+    this.emit(COLOR_CHANGE_EVENT, id);
   },
 
   /**
+   * @param {string} eventName
    * @param {function} callback
    */
-  removeChangeListener(callback) {
-    this.removeListener(CHANGE_EVENT, callback);
+  addChangeListener(eventName, callback) {
+    switch(eventName) {
+      case PartConstants.PART_CHANGE:
+        this.on(PART_CHANGE_EVENT, callback);
+        break;
+
+      case PartConstants.COLOR_CHANGE:
+        this.on(COLOR_CHANGE_EVENT, callback);
+        break;
+
+      default:
+        // no op
+    }
+    return this;
+  },
+
+  /**
+   * @param {string} eventName 
+   * @param {function} callback
+   */
+  removeChangeListener(eventName, callback) {
+    switch(eventName) {
+      case PartConstants.PART_CHANGE:
+        this.removeListener(PART_CHANGE_EVENT, callback);
+        break;
+
+      case PartConstants.COLOR_CHANGE:
+        this.removeListener(COLOR_CHANGE_EVENT, callback);
+        break;
+
+      default:
+        // no op
+    }
+    return this;
   }
 });
 
@@ -68,7 +114,12 @@ AppDispatcher.register(action => {
   switch(action.actionType) {
     case PartConstants.PART_CHANGE:
       update(action.id, {name: action.name});
-      BikeStore.emitChange(action.id);
+      BikeStore.emitPartChange(action.id);
+      break;
+
+    case PartConstants.COLOR_CHANGE:
+      updateAll({color: action.color});
+      BikeStore.emitColorChange(action.actionType);
       break;
 
     default:

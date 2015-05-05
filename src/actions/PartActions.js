@@ -15,6 +15,16 @@ let PartActions = {
       id: id,
       name: name
     });
+  },
+
+  /**
+   * @param {string} color
+   */
+  changeColor(color) {
+    AppDispatcher.dispatch({
+      actionType: PartConstants.COLOR_CHANGE,
+      color: color
+    });
   }
 
 }

@@ -3,6 +3,7 @@
 let $ = require('jquery');
 require('spectrum')($);
 
+import PartActions from '../actions/PartActions';
 import React from 'react';
 
 let activeColor = '#666666';
@@ -26,7 +27,7 @@ class ColorPicker extends React.Component {
       preferredFormat: 'rgb',
       showButtons: false,
       move: function(color) {
-        $('canvas').trigger('changeColor', color.toHexString());
+        PartActions.changeColor(color);
       }
     });
   }
