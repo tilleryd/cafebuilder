@@ -69,8 +69,9 @@ class PartOnBike extends React.Component {
   }
 
   _loadImage() {
+    let baseUrl = window.location.href;
     this.image = new Image();
-    this.image.src = `/images/${this.props.imageFile}`;
+    this.image.src = `${baseUrl}images/${this.props.imageFile}`;
     this.image.onload = () => {
       this.canvasContext.drawImage(this.image, 0, 0);
       this._setImageData();
