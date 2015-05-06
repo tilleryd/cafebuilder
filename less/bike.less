@@ -1,0 +1,165 @@
+@import "helpers";
+
+.bike {
+  width: 1011px; 
+  position: relative;
+  margin: 100px auto;
+}
+
+.partOnBike {
+  position: relative;
+}
+
+.partOnBike-wrapper {
+  &:not(#core) {
+    position: absolute !important;
+    z-index: 1;
+  }
+
+  &#seat {
+    &.original {
+      top: 46px;
+      left: 110px;
+    }
+
+    &.supersport {
+      top: 40px;
+      left: 154px;
+    }
+  }
+
+  &#tank {
+    &.original {
+      top: 25px;
+      left: 396px;
+    }
+
+    &.supersport {
+      top: 36px;
+      left: 376px;
+    }
+  }
+
+  &#tankBadges {
+    &.original {
+      top: 72px;
+      left: 527px;
+    }
+
+    &.supersport {
+      top: 72px;
+      left: 527px;
+    }
+  }
+
+  &#exhaust {
+    &.original {
+      top: 191px;
+      left: 62px;
+    }
+
+    &.supersport {
+      top: 203px;
+      left: 205px;
+    }
+  }
+}
+
+.parts-wrapper {
+  .overlay();
+  height: 100%;
+  width: 100%;
+  display: none;
+
+  &.toggle {
+    display: block;
+  }
+
+  &.visible {
+    ul.parts {
+      display: block;
+    }
+  }
+
+  .toggle {
+    .overlay();
+    height: 25px;
+    width: 25px;
+    z-index: 2;
+    cursor: pointer;
+    .circle(25px, #ff6600);
+
+    i {
+      color: #fff;
+      margin: 3px 0 0 5px;
+    }
+
+    &:hover {
+      .circle(25px, #ff8533);
+    }
+  }
+
+  ul.parts {
+    .overlay();
+    display: none;
+    margin: -80px 0 0;
+    padding: 20px;
+    background: #e6e6e6;
+    z-index: 3;
+
+    li {
+      list-style: none;
+      button {
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+/*
+.tank-badge {
+  .original {
+    background-position: 0 -660px;
+    height: 10px;
+    width: 88px;
+    .overlay(72px, auto, auto, 527px);
+  }
+}
+
+.headlight {
+  .original {
+    background-position: 0 -1075px;
+    height: 97px;
+    width: 70px;
+    .overlay(0, auto, auto, 684px);
+  }
+
+  .supersport {
+    background-position: 0 0;
+    height: 95px;
+    width: 278px;
+    .overlay(46px, auto, auto, 376px);
+  }
+}
+
+.oil-tank {
+  .original {
+    background-position: -3px -708px;
+    height: 189px;
+    width: 207px;
+    .overlay(140px, auto, auto, 239px);
+  }
+}
+
+.oil-tank-badge {
+  .original {
+    background-position: 0 -674px;
+    height: 33px;
+    width: 43px;
+    .overlay(178px, auto, auto, 327px);
+  }
+}
+*/
