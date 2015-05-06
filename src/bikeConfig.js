@@ -5,7 +5,7 @@
 module.exports = {
 	core: {
     name: 'original',
-    color: '#2713D5'
+    color: '#ff0000'
 	},
   seat: {
     name: 'original',
@@ -13,7 +13,7 @@ module.exports = {
   },
   tank: {
     name: 'original',
-    color: '#2713D5'
+    color: '#ff0000'
   },
   tankBadges: {
     name: 'original',

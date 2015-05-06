@@ -6,7 +6,7 @@ require('spectrum')($);
 import PartActions from '../actions/PartActions';
 import React from 'react';
 
-let activeColor = '#2713D5';
+let activeColor = '#ff0000';
 
 class ColorPicker extends React.Component {
 
