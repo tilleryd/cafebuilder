@@ -59,17 +59,17 @@ module.exports = {
       original: {
         x: 0,
         y: 0,
-        h: 10,
-        w: 88,
+        h: 12,
+        w: 84,
         paintable: false,
         draggable: true,
         hoverable: true
       },
       supersport: {
-        x: -90,
+        x: -85,
         y: 0,
-        h: 30,
-        w: 90,
+        h: 35,
+        w: 50,
         paintable: false,
         draggable: true,
         hoverable: true

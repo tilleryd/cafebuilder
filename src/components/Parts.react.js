@@ -21,7 +21,7 @@ class Parts extends React.Component {
 
     this._onMouseEnter = this._onMouseEnter.bind(this);
     this._onMouseLeave = this._onMouseLeave.bind(this);
-    this._onMouseOverToggle = this._onMouseOverToggle.bind(this);
+    this._onClickToggle = this._onClickToggle.bind(this);
   }
 
   componentDidMount() {
@@ -50,7 +50,7 @@ class Parts extends React.Component {
     this.setState({cssClasses: this.baseCSSClass});
   }
 
-  _onMouseOverToggle() {
+  _onClickToggle() {
     this.setState({cssClasses: this.baseCSSClass + ' toggle visible'});
   }
 
@@ -71,7 +71,7 @@ class Parts extends React.Component {
         </ul>
         <div 
           className="toggle"
-          onMouseOver={this._onMouseOverToggle}>
+          onClick={this._onClickToggle}>
           <i className="fa fa-wrench"/>
         </div>
       </div>
