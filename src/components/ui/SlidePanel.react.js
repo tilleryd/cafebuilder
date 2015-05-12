@@ -10,7 +10,8 @@ class SlidePanel extends React.Component {
     this.state = {
       components: props.components,
       position: props.position,
-      title: props.title
+      title: props.title,
+      visible: props.visible
     }
 
     this._onBtnClick = this._onBtnClick.bind(this);

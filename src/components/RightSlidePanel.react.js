@@ -22,7 +22,8 @@ class RightSlidePanel extends React.Component {
   		<div className="rightSlidePanel">
   		  <SlidePanel 
   		    position="right"
-  		    title="Tools">
+  		    title="Tools"
+          visible={true}>
   		    <ColorPicker />
   		    <Button 
   		      cssClasses="save"

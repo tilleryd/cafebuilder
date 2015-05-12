@@ -22,7 +22,8 @@ class LeftSlidePanel extends React.Component {
   		<div className="leftSlidePanel">
   		  <SlidePanel 
           position="left"
-          title="Presets">
+          title="Presets"
+          visible={true}>
           <Button 
             clickHandler={this._onButtonClick}
             text="Original" />
