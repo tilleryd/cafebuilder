@@ -68,8 +68,8 @@ gulp.task('less', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(['./src/**/*.js'], ['set-development', 'clean', 'javascript']);
-  gulp.watch(['./less/**/*.less'], ['set-development', 'clean', 'less']);
+  gulp.watch(['./src/**/*.js'], ['set-development', 'javascript']);
+  gulp.watch(['./less/**/*.less'], ['set-development', 'less']);
 });
  
 gulp.task('prod', ['clean', 'javascript', 'less']);

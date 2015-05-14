@@ -75,7 +75,10 @@ class PartOnBike extends React.Component {
     this.image.onload = () => {
       this.canvasContext.drawImage(this.image, 0, 0);
       this._setImageData();
-      this._paintPart();
+
+      if(this.state.part.name !== 'original') {
+        this._paintPart();
+      }
     }
   }
 

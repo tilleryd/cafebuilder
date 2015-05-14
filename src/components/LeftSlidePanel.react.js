@@ -9,7 +9,6 @@ class LeftSlidePanel extends React.Component {
 
   constructor(props) {
   	super(props);
-
     this._onButtonClick = this._onButtonClick.bind(this);
   }
 
