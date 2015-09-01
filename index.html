@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Build a custom cafe racer online, print it, and build it.">
     <meta name="keywords" content="cafe racer,custom motorcycle,cafe motorcycle,build custom mototrcycle">
     <meta name="robots" content="index,follow">
@@ -11,8 +12,17 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="vendor/css/spectrum.css" />
     <link rel="stylesheet" href="css/main.css">
+
+    <script type="text/javascript">
+      function onLoad() {
+        if (undefined === performance) { return; }
+        var now = new Date().getTime();
+        var page_load_time = now - performance.timing.navigationStart;
+        console.log("User-perceived page loading time: " + page_load_time);
+      }
+    </script>
   </head>
-  <body>
+  <body onload="onLoad()">
     <div class="page-wrapper">
       <noscript>Please enable JavaScript to use this application.</noscript>
       <section id="cafebuilderapp"></section>      
