@@ -1,6 +1,6 @@
 # cafebuilder
 
-![alt tag](http://d3l32fk0zqgp0n.cloudfront.net/images/cafebuilder.png)
+![alt tag](images/cafebuilder.png)
 
 Start with a stock motorcycle and build a cafe racer.
 
