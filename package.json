@@ -18,7 +18,7 @@
     "jquery-ui": "^1.10.5",
     "keymirror": "^0.1.1",
     "object-assign": "^2.0.0",
-    "react": "^0.13.1",
+    "react": "^16.13.1",
     "spectrum-colorpicker": "^1.6.2"
   },
   "devDependencies": {
